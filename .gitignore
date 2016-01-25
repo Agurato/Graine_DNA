@@ -1,9 +1,1 @@
-Binaries
-DerivedDataCache
-Intermediate
-Saved
-*.opensdf
-*.sdf
-*.sln
-*.suo
-*.xcodeproj
+*.out
