@@ -1,7 +1,7 @@
 #include <string>
 #include <vector>
+#include "Strand.hpp"
 
-class Strand {
-	private:
-	std::vector<int> sequence;
-};
+Strand::Strand() {
+	
+}

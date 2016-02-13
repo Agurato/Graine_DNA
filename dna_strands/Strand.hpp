@@ -5,8 +5,10 @@
 #include <vector>
 
 class Strand {
-	private:
+private:
 	std::vector<int> sequence;
+public:
+	Strand();
 };
 
 
