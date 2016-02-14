@@ -34,6 +34,39 @@ int binaryToDec(vector<bool> bits) {
 	return value;
 }
 
+vector<bool> hexToBinary(string hex) {
+	vector<bool> bits, binValue;
+
+	for(char c : hex) {
+		switch(c) {
+			case 'F':
+				binValue = decToBinary(15, 4);
+				break;
+			case 'E':
+				binValue = decToBinary(14, 4);
+				break;
+			case 'D':
+				binValue = decToBinary(13, 4);
+				break;
+			case 'C':
+				binValue = decToBinary(12, 4);
+				break;
+			case 'B':
+				binValue = decToBinary(11, 4);
+				break;
+			case 'A':
+				binValue = decToBinary(10, 4);
+				break;
+			default:
+				binValue = decToBinary(atoi(&c), 4);
+				break;
+		}
+		bits.insert(bits.end(), binValue.begin(), binValue.end());
+	}
+
+	return bits;
+}
+
 string binaryToHex(vector<bool> bits) {
 	vector<bool> vec;
 	unsigned int i;

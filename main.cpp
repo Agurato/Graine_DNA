@@ -22,6 +22,8 @@ int main() {
 	cout << "binaryToDec(std::vector<bool>(end1, end2)) : " << binaryToDec(std::vector<bool>(end1, end2)) << endl;
 	cout << "binaryToDec(bits) : " << binaryToDec(bits) << endl;
 	cout << "binaryToHex(bits) : " << binaryToHex(bits) << endl;
+	cout << "hexToBinary(\"FD56A0\") : " << binaryToString(hexToBinary("FD56A0")) << endl;
+	cout << "binaryToHex(hexToBinary(\"FD56A0\")) : " << binaryToHex(hexToBinary("FD56A0")) << endl;
 
 	return 0;
 }

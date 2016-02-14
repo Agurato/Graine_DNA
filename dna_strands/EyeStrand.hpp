@@ -7,13 +7,18 @@
 #include "Strand.hpp"
 #include "LimbStrand.hpp"
 
-class EyeStrand: public Strand {
-private:
-	std::vector<bool> completeStrand;
+class EyeStrand : public Strand {
 public:
 	EyeStrand();
-	std::string getEyeColor();
-	int getEyeNumber();
+	EyeStrand(std::string color, int nbEyes, std::vector<bool> locations);
+	std::vector<bool> getColorBin();
+	std::string getColor();
+
+	std::vector<bool> getNumberBin();
+	int getNumber();
+
+	std::vector<bool> getLocationsBin();
+
 };
 
 #endif

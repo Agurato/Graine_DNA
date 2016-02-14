@@ -5,10 +5,14 @@
 #include <vector>
 
 class Strand {
-private:
-	std::vector<int> sequence;
+protected:
+	std::vector<bool> sequence;
 public:
-	Strand();
+	std::vector<bool> getSequence() {
+		return sequence;
+	}
+
+	virtual int getNumber() = 0;
 };
 
 
