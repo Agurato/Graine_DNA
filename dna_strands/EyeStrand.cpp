@@ -1,6 +1,7 @@
 #include <string>
 #include <vector>
 #include <ctime>
+#include <cmath>
 
 #include "EyeStrand.hpp"
 #include "Strand.hpp"
@@ -9,24 +10,18 @@
 
 using namespace std;
 
-/* Construction du brin d'ADN pour la partie œil :
-- 24 bits pour la couleur
-- 3 bits pour le nombre
-- 2 bits pour chaque œil existant
-*/
-
 EyeStrand::EyeStrand() {
 	srand(time(0));
 	int i;
-	int eyeNb = rand()%8;
+	int eyeNb = rand()%(2*EYE_NB_SIZE);
 
 	/* eye color */
-	for(i=0 ; i<24 ; i++) {
+	for(i=0 ; i<EYE_COLOR_SIZE ; i++) {
 		sequence.push_back(rand()%2);
 	}
 
 	/* eye number */
-	vector<bool> nbVector = decToBinary(eyeNb, 3);
+	vector<bool> nbVector = decToBinary(eyeNb, EYE_NB_SIZE);
 	sequence.insert(sequence.end(), nbVector.begin(), nbVector.end());
 
 	/* eye positions */
@@ -43,13 +38,13 @@ EyeStrand::EyeStrand(string hexColor, int nbEyes, vector<bool> locations) {
 	sequence.insert(sequence.end(), binColor.begin(), binColor.end());
 
 	/* eye number */
-	if(nbEyes > 7) {
-		nbEyes = 7;
+	if(nbEyes > pow(2, EYE_NB_SIZE)-1) {
+		nbEyes = pow(2, EYE_NB_SIZE)-1;
 	}
 	else if(nbEyes < 0) {
 		nbEyes = 0;
 	}
-	vector<bool> binNb = decToBinary(nbEyes, 3);
+	vector<bool> binNb = decToBinary(nbEyes, EYE_NB_SIZE);
 	sequence.insert(sequence.end(), binNb.begin(), binNb.end());
 
 	/* eyes positions */
@@ -67,21 +62,21 @@ EyeStrand::EyeStrand(string hexColor, int nbEyes, vector<bool> locations) {
 }
 
 vector<bool> EyeStrand::getColorBin() {
-	return vector<bool>(sequence.begin(), sequence.begin()+24);
+	return vector<bool>(sequence.begin(), sequence.begin()+EYE_COLOR_SIZE);
 }
 
 string EyeStrand::getColor() {
-	return string(binaryToHex(vector<bool>(sequence.begin(), sequence.begin()+24)));
+	return string(binaryToHex(vector<bool>(sequence.begin(), sequence.begin()+EYE_COLOR_SIZE)));
 }
 
 vector<bool> EyeStrand::getNumberBin() {
-	return vector<bool>(sequence.begin()+24, sequence.begin()+27);
+	return vector<bool>(sequence.begin()+EYE_COLOR_SIZE, sequence.begin()+EYE_COLOR_SIZE+EYE_NB_SIZE);
 }
 
 int EyeStrand::getNumber() {
-	return binaryToDec(vector<bool>(sequence.begin()+24, sequence.begin()+27));
+	return binaryToDec(vector<bool>(sequence.begin()+EYE_COLOR_SIZE, sequence.begin()+EYE_COLOR_SIZE+EYE_NB_SIZE));
 }
 
 vector<bool> EyeStrand::getLocationsBin() {
-	return vector<bool>(sequence.begin()+27, sequence.end());
+	return vector<bool>(sequence.begin()+EYE_COLOR_SIZE+EYE_NB_SIZE, sequence.end());
 }

@@ -7,6 +7,15 @@
 #include "Strand.hpp"
 #include "LimbStrand.hpp"
 
+#define EYE_COLOR_SIZE 24
+#define EYE_NB_SIZE 3
+
+/* Construction du brin d'ADN pour la partie œil :
+- 24 bits pour la couleur
+- 3 bits pour le nombre
+- 2 bits pour chaque œil existant
+*/
+
 class EyeStrand : public Strand {
 public:
 	EyeStrand();
