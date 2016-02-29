@@ -10,10 +10,10 @@
 
 using namespace std;
 
-EyeStrand::EyeStrand() {
+EyeStrand::EyeStrand(int limbNb) {
 	srand(time(0));
 	int i;
-	int eyeNb = rand()%(2*EYE_NB_SIZE);
+	int eyeNb = rand()%((int) pow(2,EYE_NB_SIZE));
 
 	/* eye color */
 	for(i=0 ; i<EYE_COLOR_SIZE ; i++) {
@@ -26,7 +26,7 @@ EyeStrand::EyeStrand() {
 
 	/* eye positions */
 	for(i=0 ; i<eyeNb ; i++) {
-		vector<bool> locVector = decToBinary(rand()%4, 2);
+		vector<bool> locVector = decToBinary(rand()%limbNb, nbBitsMin(limbNb-1));
 		sequence.insert(sequence.end(), locVector.begin(), locVector.end());
 	}
 

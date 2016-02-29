@@ -1,5 +1,6 @@
 #include <iostream>
-#include <bitset>
+#include <stdlib.h>
+#include <ctime>
 
 #include "utils/utils.hpp"
 
@@ -8,7 +9,7 @@ using namespace std;
 int main() {
 	srand(time(0));
 
-	int r = std::rand()%10;
+	int r = rand()%10;
 	cout << r << endl;
 
 	vector<bool> bits = decToBinary(714, 10);
@@ -24,6 +25,10 @@ int main() {
 	cout << "binaryToHex(bits) : " << binaryToHex(bits) << endl;
 	cout << "hexToBinary(\"FD56A0\") : " << binaryToString(hexToBinary("FD56A0")) << endl;
 	cout << "binaryToHex(hexToBinary(\"FD56A0\")) : " << binaryToHex(hexToBinary("FD56A0")) << endl;
+
+	for(int i=0 ; i<17 ; i++) {
+		cout << "nbBits(" << i << ") : " << nbBitsMin(i) << endl;
+	}
 
 	return 0;
 }

@@ -109,6 +109,16 @@ string binaryToHex(vector<bool> bits) {
 	return result;
 }
 
+int nbBitsMin(int input) {
+	int i=0;
+
+	while(input >= pow(2, i)) {
+		i++;
+	}
+
+	return i;
+}
+
 string binaryToString(vector<bool> bits) {
 	string s = "";
 	for(bool b : bits) {

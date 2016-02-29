@@ -18,8 +18,9 @@
 
 class EyeStrand : public Strand {
 public:
-	EyeStrand();
+	EyeStrand(int limbNb);
 	EyeStrand(std::string color, int nbEyes, std::vector<bool> locations);
+
 	std::vector<bool> getColorBin();
 	std::string getColor();
 
@@ -27,7 +28,6 @@ public:
 	int getNumber();
 
 	std::vector<bool> getLocationsBin();
-
 };
 
 #endif
