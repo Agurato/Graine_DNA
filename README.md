@@ -8,6 +8,12 @@ Ce projet, réalisé en C++ a pour but est de réaliser l'évolution de créatur
 - Chacun des brins sera une classe fille de Strand et sera dans "dna_strands/"
 - dossier "parts/" sert à représenter les parties de l'animal
 
+### Bibliothèque graphique utilisée SFML
+
+```
+sudo apt-get install libsfml-dev
+```
+
 ### Récap réunion 04/02/16
 
 ###### Définition d'un brin d'ADN
