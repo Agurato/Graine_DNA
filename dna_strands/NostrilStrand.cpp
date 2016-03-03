@@ -11,8 +11,8 @@
 using namespace std;
 
 NostrilStrand::NostrilStrand(int limbNb) {
+	
 	srand(time(0));
-	int i;
 	int NostrilNb = rand()%((int) pow(2,Nostril_NB_SIZE));
 
 	/* Nostril number */
