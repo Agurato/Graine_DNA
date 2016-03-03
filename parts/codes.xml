@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<other>
+	<weigth max="1000" />
+</other>
+
+<general>
+	<hairiness name="nothing" code="0" />
+	<hairiness name="fur" code="1" />
+</general>
+
+<limbs nbMax="15" lenMax="255" >
+	<extremity name="hand" code="00" />
+	<extremity name="foot" code="01" />
+	<extremity name="hoof" code="10" /> <!-- hoof = sabot -->
+	<extremity name="head" code="11" />
+</limbs>
+
+<specific>
+	<eyes nbMax="7" />
+
+	<ears nbMax="7" />
+
+	<nostrils nbMax="7" />
+
+	<mouth>
+		<width>
+			<type name="small" code="0" />
+			<type name="big" code="1" />
+		</width>
+		<foodtype>
+			<type name="meat" code="00" />
+			<type name="plants" code="01" />
+			<type name="omni" code="10" />
+			<type name="microorganisms" code="11" />
+		</foodtype>
+		<teeth nbMax="63" />
+	</mouth>
+
+</specific>

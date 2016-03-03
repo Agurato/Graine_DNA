@@ -82,5 +82,6 @@ vector<bool> EyeStrand::getLocationOf(int index) {
 	if(index < 0 || index >= getNumber()) {
 		return vector<bool>();
 	}
-	return vector<bool>(sequence.begin()+EYE_COLOR_LENGTH+LIMB_NB_LENGTH*index, sequence.begin()+EYE_COLOR_LENGTH+LIMB_NB_LENGTH*(index+1));
+	return vector<bool>(sequence.begin()+EYE_COLOR_LENGTH+EYE_NB_LENGTH+LIMB_NB_LENGTH*index,
+						sequence.begin()+EYE_COLOR_LENGTH+EYE_NB_LENGTH+LIMB_NB_LENGTH*(index+1));
 }

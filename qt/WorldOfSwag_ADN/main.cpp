@@ -4,14 +4,14 @@
 #include <ctime>
 
 #include "utils/utils.hpp"
-#include "fencalc.h"
+#include "mainwindow.h"
 
 using namespace std;
 
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
 
-    FenCalc window;
+    MainWindow window;
     window.show();
 
     srand(time(0));

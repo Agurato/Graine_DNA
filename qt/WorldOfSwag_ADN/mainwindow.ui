@@ -1,7 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <author/>
- <comment/>
- <exportmacro/>
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
   <property name="geometry">
@@ -13,12 +11,150 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>WorldOfSwag - ADN</string>
   </property>
-  <widget class="QMenuBar" name="menubar"/>
-  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QComboBox" name="comboBox">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>10</y>
+      <width>83</width>
+      <height>29</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QScrollArea" name="scrollArea">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>180</y>
+      <width>531</width>
+      <height>381</height>
+     </rect>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>529</width>
+       <height>379</height>
+      </rect>
+     </property>
+     <widget class="QTableWidget" name="tableWidget">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>531</width>
+        <height>381</height>
+       </rect>
+      </property>
+      <row>
+       <property name="text">
+        <string>Animal1</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Animal2</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Animal3</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Animal4</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Animal5</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Animal6</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Animal7</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Animal8</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Animal9</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Animal10</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Animal11</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Animal12</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Animal13</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Animal14</string>
+       </property>
+      </row>
+      <column>
+       <property name="text">
+        <string>Color</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Hairiness</string>
+       </property>
+      </column>
+      <item row="0" column="0">
+       <property name="text">
+        <string/>
+       </property>
+      </item>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>27</height>
+    </rect>
+   </property>
+  </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <pixmapfunction/>
+ <resources/>
  <connections/>
 </ui>
