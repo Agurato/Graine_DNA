@@ -18,6 +18,9 @@ int main() {
 	vector<bool>::const_iterator end1 = bits.begin()+3;
 	vector<bool>::const_iterator end2 = bits.begin()+6;
 
+	cout << "vector<bool>(start, end1) : " << binaryToString(vector<bool>(start, end1)) << endl;
+	cout << "vector<bool>(end1, end2) : " << binaryToString(vector<bool>(end1, end2)) << endl;
+
 	cout << "binaryToString(bits) : " << binaryToString(bits) << endl;
 	cout << "binaryToDec(std::vector<bool>(start, end1)) : " << binaryToDec(std::vector<bool>(start, end1)) << endl;
 	cout << "binaryToDec(std::vector<bool>(end1, end2)) : " << binaryToDec(std::vector<bool>(end1, end2)) << endl;
