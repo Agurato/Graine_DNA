@@ -1,5 +1,4 @@
-#include <string>
-#include "DNA.hpp"
+#include "Creature.hpp"
 
 class Creature {
 private:

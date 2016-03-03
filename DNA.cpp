@@ -1,6 +1,4 @@
-#include <string>
-#include <vector>
-#include "dna_strands/Strand.hpp"
+#include "DNA.hpp"
 
 class DNA {
 	private:
