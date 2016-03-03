@@ -19,20 +19,25 @@ int main() {
 	vector<bool> location = decToBinary(2, 4);
 	vector<bool> location2 = decToBinary(3, 4);
 	location.insert(location.end(), location2.begin(), location2.end());
+	int i;
 
 	/* Ears Test */
 
-	cout << "First Ear";
+	cout << "First Ear" << endl;
 	EarStrand first_earStrand(4);
 
-	cout << "First Ear getNumber() : " << first_earStrand.getNumber();
-	cout << "First Ear getNumberBin() : " << first_earStrand.getNumberBin();
-	cout << "First Ear getLocations() : " <<  first_earStrand.getLocations();
-	cout << "First Ear getLocation(0) : " << first_earStrand.getLocation(0);
-	cout << "First Ear getLocation(1) : " << first_earStrand.getLocation(1);
+	int first_earStrandNb = first_earStrand.getNumber();
 
-	cout << "Second Ear";
-//	EarStrand second_earStrand = new EarStrand(2, location);
+	cout << "First Ear Sequence : " << binaryToString(first_earStrand.getSequence()) << endl;
+	cout << "First Ear getNumber() : " << first_earStrandNb << endl;
+	cout << "First Ear getNumberBin() : " << binaryToString(first_earStrand.getNumberBin()) << endl;
+	cout << "First Ear getLocations() : " <<  binaryToString(first_earStrand.getLocations()) << endl;
+	for(i = 0; i < first_earStrandNb; i++) {
+		cout << "First Ear getLocationOf(" << i << ") :" << binaryToString(first_earStrand.getLocationOf(i)) << endl;
+	}
+
+	cout << "Second Ear" << endl;
+//	EarStrand second_earStrand(2, location);
 
 
 	return 0;
