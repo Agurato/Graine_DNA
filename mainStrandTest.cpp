@@ -23,7 +23,7 @@ int main() {
 	/* Ears Test */
 
 	cout << "First Ear";
-	EarStrand first_earStrand = new EarStrand(4);
+	EarStrand first_earStrand(4);
 
 	cout << "First Ear getNumber() : " << first_earStrand.getNumber();
 	cout << "First Ear getNumberBin() : " << first_earStrand.getNumberBin();
