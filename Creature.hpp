@@ -3,7 +3,7 @@
 
 #include <string>
 #include "DNA.hpp"
-#include "Strand.hpp"
+#include "dna_strands/Strand.hpp"
 
 class Creature {
 private:

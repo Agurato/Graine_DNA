@@ -3,6 +3,7 @@
 #include <ctime>
 
 #include "utils/utils.hpp"
+#include "parts/XMLData.hpp"
 
 #include "dna_strands/Strand.hpp"
 #include "dna_strands/EarStrand.hpp"
@@ -12,8 +13,10 @@
 #include "dna_strands/NostrilStrand.hpp"
 
 #include "Creature.hpp"
+#include "DNA.hpp"
 
 using namespace std;
+using namespace xercesc;
 
 int main() {
 	XMLData* xml = XMLData::getInstance();
@@ -41,18 +44,17 @@ int main() {
 	DNA dna1(first_earStrand);
 
 	Creature creature1(0, dna1);
-	DNA dna12();
-	dna12 = creature1.getDNA();
-	vector<Strand> vectorStrand1 = dna12.getSequence();
-	EarStrand first_creature_earStrand = vectorStrand1.at(0);
+	DNA dna12 = creature1.getDNA();
+	vector<Strand*> vectorStrand1 = dna12.getSequence();
+	EarStrand* first_creature_earStrand = (EarStrand*) vectorStrand1[0];
 
-	cout << "First Creature ID : " << creature1.getID();
-	cout << "First Creature Ear Sequence : " << binaryToString(first_creature_earStrand.getSequence()) << endl;
-	cout << "First Creature Ear getNumber() : " << first_creature_earStrand.getNumber() << endl;
-	cout << "First Creature Ear getNumberBin() : " << binaryToString(first_creature_earStrand.getNumberBin()) << endl;
-	cout << "First Creature Ear getLocations() : " <<  binaryToString(first_creature_earStrand.getLocations()) << endl;
-	cout << "First Creature Ear getLocationOf(0) :" << binaryToString(first_creature_earStrand.getLocationOf(0)) << endl;
-	cout << "First Creature Ear getLocationOf(1) :" << binaryToString(first_creature_earStrand.getLocationOf(1)) << endl;
+	cout << "First Creature ID : " << creature1.getID() << endl;
+	cout << "First Creature Ear Sequence : " << binaryToString(first_creature_earStrand->getSequence()) << endl;
+	cout << "First Creature Ear getNumber() : " << first_creature_earStrand->getNumber() << endl;
+	cout << "First Creature Ear getNumberBin() : " << binaryToString(first_creature_earStrand->getNumberBin()) << endl;
+	cout << "First Creature Ear getLocations() : " <<  binaryToString(first_creature_earStrand->getLocations()) << endl;
+	cout << "First Creature Ear getLocationOf(0) :" << binaryToString(first_creature_earStrand->getLocationOf(0)) << endl;
+	cout << "First Creature Ear getLocationOf(1) :" << binaryToString(first_creature_earStrand->getLocationOf(1)) << endl;
 
 
 	return 0;
