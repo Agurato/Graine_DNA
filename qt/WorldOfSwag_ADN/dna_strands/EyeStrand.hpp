@@ -7,19 +7,13 @@
 #include "Strand.hpp"
 #include "LimbStrand.hpp"
 
-#define EYE_COLOR_SIZE 24
-#define EYE_NB_SIZE 3
-
-/* Construction du brin d'ADN pour la partie œil :
-- 24 bits pour la couleur
-- 3 bits pour le nombre
-- 2 bits pour chaque œil existant
-*/
+#define EYE_COLOR_LENGTH 24
+#define EYE_NB_LENGTH 3
 
 class EyeStrand : public Strand {
 public:
 	EyeStrand(int limbNb);
-	EyeStrand(std::string color, int nbEyes, std::vector<bool> locations);
+	EyeStrand(std::vector<bool> colorBin, int eyeNb, std::vector<bool> locations);
 
 	std::vector<bool> getColorBin();
 	std::string getColor();
@@ -27,7 +21,8 @@ public:
 	std::vector<bool> getNumberBin();
 	int getNumber();
 
-	std::vector<bool> getLocationsBin();
+	std::vector<bool> getLocations();
+	std::vector<bool> getLocationOf(int index);
 };
 
 #endif

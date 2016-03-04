@@ -8,8 +8,6 @@ class Strand {
 protected:
 	std::vector<bool> sequence;
 public:
-    Strand();
-
 	std::vector<bool> getSequence() {
 		return sequence;
 	}

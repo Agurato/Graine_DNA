@@ -8,10 +8,10 @@ Ce projet, réalisé en C++ a pour but est de réaliser l'évolution de créatur
 - Chacun des brins sera une classe fille de Strand et sera dans "dna_strands/"
 - dossier "parts/" sert à représenter les parties de l'animal
 
-### Bibliothèque graphique utilisée SFML
-
+### Bibliothèque graphique utilisée : Qt
+Fonctionne sous Linux, qques problèmes sous Windows (à voir très vite)
 ```
-sudo apt-get install libsfml-dev
+http://www.qt.io/download-open-source/
 ```
 
 ### Récap réunion 04/02/16
