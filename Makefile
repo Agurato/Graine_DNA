@@ -1,8 +1,8 @@
 parser :
-	g++ mainParser.cpp parts/XMLData.cpp utils/utils.cpp -o parser.out -std=c++11 -lxerces-c
+	g++ mainParserTest.cpp parts/XMLData.cpp utils/utils.cpp -o parser.out -std=c++11 -lxerces-c
 
 utilsTest :
-	g++ main.cpp utils/utils.cpp -o utilsTest.out -std=c++11
+	g++ mainUtilsTest.cpp utils/utils.cpp -o utilsTest.out -std=c++11
 
 mainStrandTest :
 	g++ mainStrandTest.cpp utils/utils.cpp dna_strands/EarStrand.cpp -o mainStrandTest.out -std=c++11

@@ -116,7 +116,7 @@ void XMLData::parseDOMElement(DOMElement* element) {
 		/*
 		cout << "\t" << attr_name << ": "<< attr_value << endl;
 		*/
-		
+
 		if(name == "limbs") {
 			if(string(attr_name) == "nbMax") {
 				limbNbLength = nbBitsMin(stoi(attr_value));

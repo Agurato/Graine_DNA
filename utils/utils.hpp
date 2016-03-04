@@ -1,3 +1,6 @@
+#ifndef DEF_UTILS
+#define DEF_UTILS
+
 #include <iostream>
 #include <vector>
 #include <cmath>
@@ -8,3 +11,5 @@ std::vector<bool> hexToBinary(std::string hex);
 std::string binaryToHex(std::vector<bool> bits);
 int nbBitsMin(int input);
 std::string binaryToString(std::vector<bool> bits);
+
+#endif

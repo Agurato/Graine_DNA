@@ -3,11 +3,11 @@
 
 #include <string>
 #include <vector>
+#include <cmath>
+#include <ctime>
 
 #include "Strand.hpp"
-#include "LimbStrand.hpp"
-
-#define EAR_NB_LENGTH 3
+#include "../utils/utils.hpp"
 
 class EarStrand : public Strand {
 public:

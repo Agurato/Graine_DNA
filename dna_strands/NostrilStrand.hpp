@@ -3,11 +3,11 @@
 
 #include <string>
 #include <vector>
+#include <cmath>
+#include <ctime>
 
 #include "Strand.hpp"
-#include "LimbStrand.hpp"
-
-#define NOSTRIL_NB_SIZE 3
+#include "../utils/utils.hpp"
 
 class NostrilStrand : public Strand {
 public:
@@ -17,8 +17,8 @@ public:
 	std::vector<bool> getNumberBin();
 	int getNumber();
 
-	std::vector<bool> getLocationsBin();
+	std::vector<bool> getLocations();
+	std::vector<bool> getLocationOf(int index);
 };
-
 
 #endif

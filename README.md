@@ -23,7 +23,7 @@ configure
 make
 sudo make install
 ```
-Si à l'éxecution, il y a une erreur :
+Si à l'éxecution du programme, il y a une erreur :
 ```shell
 export LD_LIBRARY_PATH=/usr/local/lib
 ```

@@ -14,6 +14,9 @@
 using namespace std;
 
 int main() {
+	XMLData* xml = XMLData::getInstance();
+	xml->parseXML("parts/codes.xml");
+
 	srand(time(0));
 
 	vector<bool> location = decToBinary(4, 4);

@@ -26,7 +26,7 @@ public:
 private:
 	int limbNbLength, limbSizeLength, limbTypeLength;
 	int earNbLength;
-	int eyeColorLength, eyeNbLength;
+	int eyeColorLength = 24, eyeNbLength;
 	int mouthWidthLength, teethNbLength, teethTypeLength;
 	int nostrilNbLength;
 

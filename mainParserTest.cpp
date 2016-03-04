@@ -1,6 +1,5 @@
 #include <iostream>
 
-#include "utils/utils.hpp"
 #include "parts/XMLData.hpp"
 
 using namespace std;
@@ -36,6 +35,6 @@ int main(int argc, char **argv) {
 	cout << "Teeth : ";
 	cout << "nb=" << xml->TEETH_NB_LENGTH() << " - types=" << xml->TEETH_TYPE_LENGTH() << endl;
 	*/
-	
+
 	return 0;
 }
