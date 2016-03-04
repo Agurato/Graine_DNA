@@ -24,6 +24,8 @@ public:
 
 	std::vector<bool> getTypes();
 	std::vector<bool> getTypeOf(int index);
+
+	std::string getStrandType();
 };
 
 #endif

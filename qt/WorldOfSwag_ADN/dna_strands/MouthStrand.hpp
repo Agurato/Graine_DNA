@@ -24,6 +24,8 @@ public:
 	std::string getTeethType();
 
 	std::vector<bool> getLocation();
+
+	std::string getStrandType();
 };
 
 #endif

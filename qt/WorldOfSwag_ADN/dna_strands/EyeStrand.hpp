@@ -22,6 +22,8 @@ public:
 
 	std::vector<bool> getLocations();
 	std::vector<bool> getLocationOf(int index);
+
+	std::string getStrandType();
 };
 
 #endif

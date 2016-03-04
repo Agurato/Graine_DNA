@@ -10,9 +10,11 @@ protected:
 	XMLData* xml = XMLData::getInstance();
 	std::vector<bool> sequence;
 public:
-	virtual std::vector<bool> getSequence() {
+	std::vector<bool> getSequence() {
 		return sequence;
 	}
+
+	virtual std::string getStrandType();
 };
 
 

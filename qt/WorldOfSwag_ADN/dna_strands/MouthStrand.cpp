@@ -95,3 +95,7 @@ string MouthStrand::getTeethType() {
 vector<bool> MouthStrand::getLocation() {
 	return vector<bool>(sequence.begin()+xml->MOUTH_WIDTH_LENGTH()+xml->TEETH_NB_LENGTH()+xml->TEETH_TYPE_LENGTH(), sequence.end());
 }
+
+string MouthStrand::getStrandType() {
+	return "MouthStrand";
+}

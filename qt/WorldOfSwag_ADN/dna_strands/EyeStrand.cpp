@@ -80,3 +80,7 @@ vector<bool> EyeStrand::getLocationOf(int index) {
 	return vector<bool>(sequence.begin()+xml->EYE_COLOR_LENGTH()+xml->EYE_NB_LENGTH()+xml->LIMB_NB_LENGTH()*index,
 						sequence.begin()+xml->EYE_COLOR_LENGTH()+xml->EYE_NB_LENGTH()+xml->LIMB_NB_LENGTH()*(index+1));
 }
+
+string EyeStrand::getStrandType() {
+	return "EyeStrand";
+}

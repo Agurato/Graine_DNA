@@ -71,3 +71,7 @@ vector<bool> LimbStrand::getTypeOf(int index) {
 	return vector<bool>(sequence.begin()+xml->LIMB_NB_LENGTH()+xml->LIMB_SIZE_LENGTH()*getNumber()+xml->LIMB_TYPE_LENGTH()*(index-1),
 		sequence.begin()+xml->LIMB_NB_LENGTH()+xml->LIMB_SIZE_LENGTH()*getNumber()+xml->LIMB_TYPE_LENGTH()*index);
 }
+
+string LimbStrand::getStrandType() {
+	return "LimbStrand";
+}

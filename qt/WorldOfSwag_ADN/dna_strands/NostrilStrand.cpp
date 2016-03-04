@@ -44,3 +44,7 @@ vector<bool> NostrilStrand::getLocationOf(int index) {
 	}
 	return vector<bool>(sequence.begin()+xml->NOSTRIL_NB_LENGTH()+xml->LIMB_NB_LENGTH()*index, sequence.begin()+xml->NOSTRIL_NB_LENGTH()+xml->LIMB_NB_LENGTH()*(index+1));
 }
+
+string NostrilStrand::getStrandType() {
+	return "NostrilStrand";
+}

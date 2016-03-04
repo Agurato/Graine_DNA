@@ -64,3 +64,7 @@ vector<bool> EarStrand::getLocationOf(int index) {
 	}
 	return vector<bool>(sequence.begin()+xml->EAR_NB_LENGTH()+xml->LIMB_NB_LENGTH()*index, sequence.begin()+xml->EAR_NB_LENGTH()+xml->LIMB_NB_LENGTH()*(index+1));
 }
+
+string EarStrand::getStrandType() {
+	return "EarStrand";
+}
