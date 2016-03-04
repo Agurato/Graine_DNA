@@ -1,5 +1,5 @@
 parser :
-	g++ mainParser.cpp parts/XMLData.cpp -o parser.out -std=c++11 -lxerces-c
+	g++ mainParser.cpp parts/XMLData.cpp utils/utils.cpp -o parser.out -std=c++11 -lxerces-c
 
 utilsTest :
 	g++ main.cpp utils/utils.cpp -o utilsTest.out -std=c++11

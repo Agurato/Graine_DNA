@@ -1,7 +1,10 @@
 #ifndef DEF_XMLDATA
 #define DEF_XMLDATA
 
+#include "../utils/utils.hpp"
+
 #include <string>
+#include <vector>
 #include <xercesc/dom/DOM.hpp>
 #include <xercesc/dom/DOMElement.hpp>
 #include <xercesc/dom/DOMNode.hpp>
@@ -27,12 +30,11 @@ private:
 	int mouthWidthLength, teethNbLength, teethTypeLength;
 	int nostrilNbLength;
 
-	static void parseDOMNode(xercesc::DOMNode* node);
-	static void parseDOMElement(xercesc::DOMElement* element);
-	static void parseDOMText(xercesc::DOMText* text);
+	void parseDOMNode(xercesc::DOMNode* node);
+	void parseDOMElement(xercesc::DOMElement* element);
 
 public:
-	static int parseXML(std::string filePath);
+	int parseXML(std::string filePath);
 
 	int LIMB_NB_LENGTH();
 	int LIMB_SIZE_LENGTH();

@@ -38,22 +38,22 @@ int XMLData::parseXML(string filePath) {
 		XMLData::parseDOMNode(dom);
 	} catch (const XMLException& e) {
 		char* message = XMLString::transcode(e.getMessage());
-		cout << "Exception message is: \n" << message << "\n";
+		cout << "XMLException is: \n\t" << message << "\n";
 		XMLString::release(&message);
-		return -1;
+		return 2;
 	} catch (const DOMException& e) {
 		char* message = XMLString::transcode(e.msg);
-		cout << "Exception message is: \n" << message << "\n";
+		cout << "DOMException is: \n\t" << message << "\n";
 		XMLString::release(&message);
-		return -1;
+		return 3;
 	} catch (const SAXException& e) {
 		char* message = XMLString::transcode(e.getMessage());
-		cout << "Exception message is: \n" << message << "\n";
+		cout << "SAXException is: \n\t" << message << "\n";
 		XMLString::release(&message);
-		return -1;
+		return 4;
 	} catch (...) {
 		cout << "Unexpected Exception \n";
-		return -1;
+		return 5;
 	}
 
 	delete parser;
@@ -64,54 +64,88 @@ int XMLData::parseXML(string filePath) {
 	return 0;
 }
 
+/* First method called to parse data in XML (recursive) */
 void XMLData::parseDOMNode(DOMNode *node) {
 	if (node) {
-		switch (node->getNodeType()) {
-			case DOMNode::ELEMENT_NODE:
+		string nodeName(XMLString::transcode(node->getNodeName()));
+
+		if(node->getNodeType() == DOMNode::ELEMENT_NODE) {
+			/*
+			path.push_back(nodeName);
+			for (vector<string>::iterator it = path.begin() ; it != path.end() ; ++it) {
+				cout << *it << " - ";
+			}
+			*/
 			XMLData::parseDOMElement(static_cast<DOMElement*>(node));
-			break;
-			case DOMNode::TEXT_NODE:
-			XMLData::parseDOMText(static_cast<DOMText*>(node));
-			break;
-			default:
-			break;
 		}
 
+		int nbChilds = 0;
 		DOMNode* child = node->getFirstChild();
+
 		while (child) {
-			DOMNode* next = child->getNextSibling();
+			if(child->getNodeType() == DOMNode::ELEMENT_NODE) {
+				nbChilds ++;
+			}
 			XMLData::parseDOMNode(child);
-			child = next;
+			child = child->getNextSibling();
+		}
+
+		if(nodeName == "hairiness") {
+
+		}
+		else if(nodeName == "extremity") {
+			limbTypeLength = nbBitsMin(nbChilds-1);
+		}
+		else if(nodeName == "width") {
+			mouthWidthLength = nbBitsMin(nbChilds-1);
+		}
+		else if(nodeName == "food") {
+			teethTypeLength = nbBitsMin(nbChilds-1);
 		}
 	}
 }
 
 void XMLData::parseDOMElement(DOMElement* element) {
-	char* name = XMLString::transcode(element->getTagName());
-	cout << "tag    : " << name << endl;
-	XMLString::release(&name);
+	string name(XMLString::transcode(element->getTagName()));
 
 	DOMNamedNodeMap* map = element->getAttributes();
 	for (XMLSize_t i = 0; i < map->getLength(); i++) {
 		DOMAttr* attr = static_cast<DOMAttr*>(map->item(i));
-		char* attr_name  = XMLString::transcode(attr->getName());
-		char* attr_value = XMLString::transcode(attr->getValue());
-		cout << attr_name << ": "<< attr_value << endl;
-
-		XMLString::release(&attr_name);
-		XMLString::release(&attr_value);
+		string attr_name(XMLString::transcode(attr->getName()));
+		string attr_value(XMLString::transcode(attr->getValue()));
+		/*
+		cout << "\t" << attr_name << ": "<< attr_value << endl;
+		*/
+		
+		if(name == "limbs") {
+			if(string(attr_name) == "nbMax") {
+				limbNbLength = nbBitsMin(stoi(attr_value));
+			}
+			else if(string(attr_name) == "sizeMax") {
+				limbSizeLength = nbBitsMin(stoi(attr_value));
+			}
+		}
+		else if(name == "ears") {
+			if(string(attr_name) == "nbMax") {
+				earNbLength = nbBitsMin(stoi(attr_value));
+			}
+		}
+		else if(name == "eyes") {
+			if(string(attr_name) == "nbMax") {
+				eyeNbLength = nbBitsMin(stoi(attr_value));
+			}
+		}
+		else if(name == "nostrils") {
+			if(string(attr_name) == "nbMax") {
+				nostrilNbLength = nbBitsMin(stoi(attr_value));
+			}
+		}
+		else if(name == "teeth") {
+			if(string(attr_name) == "nbMax") {
+				teethNbLength = nbBitsMin(stoi(attr_value));
+			}
+		}
 	}
-}
-
-void XMLData::parseDOMText(DOMText *text) {
-	XMLCh* buffer = new XMLCh[XMLString::stringLen(text->getData()) + 1];
-	XMLString::copyString(buffer, text->getData());
-	XMLString::trim(buffer);
-	char* content=XMLString::transcode(buffer);
-	delete[] buffer;
-
-	cout << "content: " << content << endl;
-	XMLString::release(&content);
 }
 
 /* Getters */
