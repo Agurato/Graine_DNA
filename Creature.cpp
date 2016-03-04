@@ -1,7 +1,18 @@
-#include "Creature.hpp"
+#include <cmath>
+#include <ctime>
 
-class Creature {
-private:
-	int id;
-	DNA dna;
-};
+#include "Creature.hpp"
+#include "../utils/utils.hpp"
+
+Creature::Creature(int newid, DNA newdna) {
+	id = newid;
+	dna = newdna;
+}
+
+int Creature::getID() {
+	return id;
+}
+
+DNA Creature::getDNA() {
+	return dna;
+}

@@ -7,7 +7,18 @@
 
 class DNA {
 	private:
-	std::vector<Strand> sequence;
+		std::vector<Strand> sequence;
+
+	public:
+		DNA();
+		DNA(Strand strand);
+
+		void addStrand(Strand strand);
+
+		vector<Strand> getSequence();
+
+		void DNA::setSequence(Strand strand);
+
 };
 
 
