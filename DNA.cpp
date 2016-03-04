@@ -3,22 +3,21 @@
 using namespace std;
 
 DNA::DNA() {
-	sequence.clear();
+	dnaStrand.clear();
 }
 
-DNA::DNA(Strand strand) {
-	sequence.insert(sequence.end(), &strand);
+DNA::DNA(vector<Strand*> strands) {
+	dnaStrand = strands;
 }
 
 void DNA::addStrand(Strand strand) {
-	sequence.insert(sequence.end(), &strand);
+	dnaStrand.push_back(&strand);
 }
 
-vector<Strand*> DNA::getSequence() {
-	return sequence;
+vector<Strand*> DNA::getDNAStrand() {
+	return dnaStrand;
 }
 
-void DNA::setSequence(Strand strand) {
-	sequence.clear();
-	sequence.insert(sequence.end(), &strand);
+void DNA::setDNAStrand(vector<Strand*> strands) {
+	dnaStrand = strands;
 }
