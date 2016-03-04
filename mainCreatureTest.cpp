@@ -41,11 +41,12 @@ int main() {
 	cout << "___________________________________" << endl;
 
 
-	DNA dna1(first_earStrand);
+	DNA dna1;
+	dna1.addStrand(&first_earStrand);
 
 	Creature creature1(0, dna1);
 	DNA dna12 = creature1.getDNA();
-	vector<Strand*> vectorStrand1 = dna12.getSequence();
+	vector<Strand*> vectorStrand1 = dna12.getDNAStrand();
 	EarStrand* first_creature_earStrand = (EarStrand*) vectorStrand1[0];
 
 	cout << "First Creature ID : " << creature1.getID() << endl;

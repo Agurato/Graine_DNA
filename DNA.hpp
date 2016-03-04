@@ -13,7 +13,7 @@ public:
 	DNA();
 	DNA(std::vector<Strand*> strands);
 
-	void addStrand(Strand strand);
+	void addStrand(Strand* strand);
 
 	std::vector<Strand*> getDNAStrand();
 

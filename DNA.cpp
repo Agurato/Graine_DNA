@@ -10,8 +10,8 @@ DNA::DNA(vector<Strand*> strands) {
 	dnaStrand = strands;
 }
 
-void DNA::addStrand(Strand strand) {
-	dnaStrand.push_back(&strand);
+void DNA::addStrand(Strand* strand) {
+	dnaStrand.push_back(strand);
 }
 
 vector<Strand*> DNA::getDNAStrand() {
