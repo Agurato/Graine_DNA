@@ -3,13 +3,11 @@
 
 #include <string>
 #include <vector>
+#include <cmath>
+#include <ctime>
 
 #include "Strand.hpp"
-#include "LimbStrand.hpp"
-
-#define MOUTH_WIDTH_LENGTH 1
-#define TEETH_NB_LENGTH 6
-#define TEETH_TYPE_LENGTH 2
+#include "../utils/utils.hpp"
 
 class MouthStrand : public Strand {
 public:

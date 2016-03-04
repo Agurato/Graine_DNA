@@ -18,7 +18,11 @@ SOURCES += \
     Creature.cpp \
     DNA.cpp \
     mainParser.cpp \
-    mainStrandTest.cpp
+    mainStrandTest.cpp \
+    mainCreatureTest.cpp \
+    mainEarStrandTest.cpp \
+    mainParserTest.cpp \
+    mainUtilsTest.cpp
 
 FORMS += \
     mainwindow.ui
@@ -40,3 +44,8 @@ HEADERS += \
 
 DISTFILES += \
     README.md
+
+unix:!macx: LIBS += -L/usr/local/lib/ -lxerces-c
+
+INCLUDEPATH += /usr/local/include
+DEPENDPATH += /usr/local/include

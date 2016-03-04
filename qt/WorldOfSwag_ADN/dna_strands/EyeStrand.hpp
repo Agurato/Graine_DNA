@@ -3,12 +3,11 @@
 
 #include <string>
 #include <vector>
+#include <cmath>
+#include <ctime>
 
 #include "Strand.hpp"
-#include "LimbStrand.hpp"
-
-#define EYE_COLOR_LENGTH 24
-#define EYE_NB_LENGTH 3
+#include "../utils/utils.hpp"
 
 class EyeStrand : public Strand {
 public:

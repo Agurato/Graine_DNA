@@ -1,22 +1,14 @@
-#include <string>
-#include <vector>
-#include <ctime>
-#include <cmath>
-
 #include "NostrilStrand.hpp"
-#include "Strand.hpp"
-#include "LimbStrand.hpp"
-#include "../utils/utils.hpp"
 
 using namespace std;
 
 NostrilStrand::NostrilStrand(int limbNb) {
-	
+
 	srand(time(0));
-	int NostrilNb = rand()%((int) pow(2,Nostril_NB_SIZE));
+	int nostrilNb = rand()%((int) pow(2,xml->NOSTRIL_NB_LENGTH()));
 
 	/* Nostril number */
-	vector<bool> nbVector = decToBinary(NostrilNb, Nostril_NB_SIZE);
+	vector<bool> nbVector = decToBinary(nostrilNb, xml->NOSTRIL_NB_LENGTH());
 	sequence.insert(sequence.end(), nbVector.begin(), nbVector.end());
 
 }
@@ -24,24 +16,31 @@ NostrilStrand::NostrilStrand(int limbNb) {
 NostrilStrand::NostrilStrand(int nbNostrils, vector<bool> locations) {
 
   /* Nostril number */
-	if(nbNostrils > pow(2, Nostril_NB_SIZE)-1) {
-		nbNostrils = pow(2, Nostril_NB_SIZE)-1;
+	if(nbNostrils > pow(2, xml->NOSTRIL_NB_LENGTH())-1) {
+		nbNostrils = pow(2, xml->NOSTRIL_NB_LENGTH())-1;
 	}
 	else if(nbNostrils < 0) {
 		nbNostrils = 0;
 	}
-	vector<bool> binNb = decToBinary(nbNostrils, Nostril_NB_SIZE);
+	vector<bool> binNb = decToBinary(nbNostrils, xml->NOSTRIL_NB_LENGTH());
 	sequence.insert(sequence.end(), binNb.begin(), binNb.end());
 }
 
 vector<bool> NostrilStrand::getNumberBin() {
-	return vector<bool>(sequence.begin(), sequence.begin()+Nostril_NB_SIZE);
+	return vector<bool>(sequence.begin(), sequence.begin()+xml->NOSTRIL_NB_LENGTH());
 }
 
 int NostrilStrand::getNumber() {
-	return binaryToDec(vector<bool>(sequence.begin(), sequence.begin()+Nostril_NB_SIZE));
+	return binaryToDec(vector<bool>(sequence.begin(), sequence.begin()+xml->NOSTRIL_NB_LENGTH()));
 }
 
-vector<bool> NostrilStrand::getLocationsBin() {
-	return vector<bool>(sequence.begin()+Nostril_NB_SIZE, sequence.end());
+vector<bool> NostrilStrand::getLocations() {
+	return vector<bool>(sequence.begin()+xml->NOSTRIL_NB_LENGTH(), sequence.end());
+}
+
+vector<bool> NostrilStrand::getLocationOf(int index) {
+	if(index < 0 || index >= getNumber()) {
+		return vector<bool>();
+	}
+	return vector<bool>(sequence.begin()+xml->NOSTRIL_NB_LENGTH()+xml->LIMB_NB_LENGTH()*index, sequence.begin()+xml->NOSTRIL_NB_LENGTH()+xml->LIMB_NB_LENGTH()*(index+1));
 }

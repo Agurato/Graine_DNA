@@ -3,11 +3,11 @@
 
 #include <string>
 #include <vector>
-#include "Strand.hpp"
+#include <cmath>
+#include <ctime>
 
-#define LIMB_NB_LENGTH 4
-#define LIMB_SIZE_LENGTH 8
-#define LIMB_TYPES_LENGTH 4
+#include "Strand.hpp"
+#include "../utils/utils.hpp"
 
 enum limbTypeName {HAND, FEET, HOOF, HEAD};
 

@@ -14,6 +14,20 @@ Fonctionne sous Linux, qques problèmes sous Windows (à voir très vite)
 http://www.qt.io/download-open-source/
 ```
 
+### Bibliothèqe Xerces-C pour parser le XML
+```shell
+wget http://www.apache.org/dist/xerces/c/3/sources/xerces-c-3.1.3.tar.bz2
+tar -xjvf xerces-c-3.1.3.tar.bz2
+cd xerces-c-3.1.3
+configure
+make
+sudo make install
+```
+Si à l'éxecution du programme, il y a une erreur :
+```shell
+export LD_LIBRARY_PATH=/usr/local/lib
+```
+
 ### Récap réunion 04/02/16
 
 ###### Définition d'un brin d'ADN
