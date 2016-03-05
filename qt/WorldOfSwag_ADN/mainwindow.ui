@@ -14,23 +14,13 @@
    <string>WorldOfSwag - ADN</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QComboBox" name="comboBox">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>10</y>
-      <width>83</width>
-      <height>29</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QScrollArea" name="scrollArea">
     <property name="geometry">
      <rect>
-      <x>260</x>
-      <y>180</y>
-      <width>531</width>
-      <height>381</height>
+      <x>0</x>
+      <y>0</y>
+      <width>801</width>
+      <height>571</height>
      </rect>
     </property>
     <property name="widgetResizable">
@@ -41,8 +31,8 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>529</width>
-       <height>379</height>
+       <width>799</width>
+       <height>569</height>
       </rect>
      </property>
      <widget class="QTableWidget" name="tableWidget">
@@ -50,95 +40,10 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>531</width>
-        <height>381</height>
+        <width>801</width>
+        <height>571</height>
        </rect>
       </property>
-      <row>
-       <property name="text">
-        <string>Animal1</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>Animal2</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>Animal3</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>Animal4</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>Animal5</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>Animal6</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>Animal7</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>Animal8</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>Animal9</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>Animal10</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>Animal11</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>Animal12</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>Animal13</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>Animal14</string>
-       </property>
-      </row>
-      <column>
-       <property name="text">
-        <string>Color</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Hairiness</string>
-       </property>
-      </column>
-      <item row="0" column="0">
-       <property name="text">
-        <string/>
-       </property>
-      </item>
      </widget>
     </widget>
    </widget>

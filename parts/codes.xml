@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Dans les parents des types, on peut mettre
+typesMax="x", x étant le nombre maximal de types que l'on veut -->
 <creation>
 	<general>
 		<weigth max="1000" />
 	</general>
 
 	<hairiness>
-		<type name="nothing" code="0" />
-		<type name="fur" code="1" />
+		<type name="nothing" />
+		<type name="fur" />
 	</hairiness>
 
 	<limbs nbMax="15" sizeMax="255" >
-		<extremity>
-			<type name="hand" code="00" />
-			<type name="foot" code="01" />
-			<type name="hoof" code="10" /> <!-- hoof = sabot -->
-			<type name="head" code="11" />
-		</extremity>
+		<type name="hand" />
+		<type name="foot" />
+		<type name="hoof" /> <!-- hoof = sabot -->
+		<type name="head" />
 	</limbs>
 
 	<specific>
@@ -27,16 +27,15 @@
 
 		<mouth>
 			<width>
-				<type name="small" code="0" />
-				<type name="big" code="1" />
+				<type name="small" />
+				<type name="big" />
 			</width>
-			<food>
-				<type name="meat" code="00" />
-				<type name="plants" code="01" />
-				<type name="omni" code="10" />
-				<type name="microorganisms" code="11" />
-			</food>
-			<teeth nbMax="63" />
+			<teeth nbMax="63">
+				<type name="meat" />
+				<type name="plants" />
+				<type name="omni" />
+				<type name="microorganisms" />
+			</teeth>
 		</mouth>
 	</specific>
 </creation>

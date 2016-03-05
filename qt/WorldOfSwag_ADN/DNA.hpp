@@ -6,18 +6,18 @@
 #include "dna_strands/Strand.hpp"
 
 class DNA {
-	private:
-		std::vector<Strand> sequence;
+private:
+	std::vector<Strand*> dnaStrand;
 
-	public:
-		DNA();
-		DNA(Strand strand);
+public:
+	DNA();
+	DNA(std::vector<Strand*> strands);
 
-		void addStrand(Strand strand);
+	void addStrand(Strand* strand);
 
-		vector<Strand> getSequence();
+	std::vector<Strand*> getDNAStrand();
 
-		void DNA::setSequence(Strand strand);
+	void setDNAStrand(std::vector<Strand*> strands);
 
 };
 
