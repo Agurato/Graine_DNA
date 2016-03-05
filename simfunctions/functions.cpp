@@ -21,9 +21,11 @@ DNA mating(DNA dnaStrand1, DNA dnaStrand2) {
 		choice = rand()%2;
 		if(choice == 0) {
 			newDNA.addStrand(vectorDNAStrand1[i]);
+			cout << "DNA taken from first Strand" << endl;
 		}
 		else {
 			newDNA.addStrand(vectorDNAStrand2[i]);
+			cout << "DNA taken from second Strand" << endl;
 		}
 	}
 
