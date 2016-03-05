@@ -9,7 +9,6 @@ DNA mating(DNA dnaStrand1, DNA dnaStrand2) {
 
 	vector<Strand*> vectorDNAStrand1 = dnaStrand1.getDNAStrand();
 	vector<Strand*> vectorDNAStrand2 = dnaStrand2.getDNAStrand();
-	srand(time(0));
 
 	if(vectorDNAStrand1.size() != vectorDNAStrand2.size()) {
 		cerr << "Can't mate, creatures have mismatched DNA" << endl;

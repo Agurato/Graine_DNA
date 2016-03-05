@@ -3,7 +3,6 @@
 using namespace std;
 
 EyeStrand::EyeStrand(int limbNb) {
-	srand(time(0));
 	int i;
 
 	int eyeNb = rand() % ((int) pow(2, xml->EYE_NB_LENGTH()));

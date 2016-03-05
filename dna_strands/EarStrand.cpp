@@ -3,7 +3,6 @@
 using namespace std;
 
 EarStrand::EarStrand(int limbNb) {
-	srand(time(0));
 	int i;
 
 	int earNb = rand() % ((int) pow(2, xml->EAR_NB_LENGTH()));

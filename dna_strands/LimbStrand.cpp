@@ -4,7 +4,6 @@ using namespace std;
 
 LimbStrand::LimbStrand() {
 	int i=0;
-	srand(time(0));
 
 	int limbNb = rand()%((int) pow(2, xml->LIMB_NB_LENGTH()));
 

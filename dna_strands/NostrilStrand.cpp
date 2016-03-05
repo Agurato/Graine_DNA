@@ -4,7 +4,6 @@ using namespace std;
 
 NostrilStrand::NostrilStrand(int limbNb) {
 
-	srand(time(0));
 	int nostrilNb = rand()%((int) pow(2,xml->NOSTRIL_NB_LENGTH()));
 
 	/* Nostril number */

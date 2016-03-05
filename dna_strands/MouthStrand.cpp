@@ -4,7 +4,6 @@ using namespace std;
 
 MouthStrand::MouthStrand(int limbNb) {
 
-	srand(time(0));
 	int mouthType = rand()%((int) pow(2, xml->MOUTH_WIDTH_LENGTH()));
 	int teethNb = rand()%((int) pow(2, xml->TEETH_NB_LENGTH()));
 	int teethType = rand()%((int) pow(2, xml->TEETH_TYPE_LENGTH()));
