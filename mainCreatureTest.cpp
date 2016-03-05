@@ -79,6 +79,8 @@ int main() {
 	EyeStrand* first_creature_eyeStrand = (EyeStrand*) vectorStrand1[1];
 
 	cout << "First Creature ID : " << creature1.getID() << endl;
+	cout << "First Creature First Sequence Type : " << vectorStrand1[0]->getStrandType() << endl;
+	cout << "First Creature Second Sequence Type : " << vectorStrand1[1]->getStrandType() << endl;
 	cout << "-------------------------" << endl;
 	cout << "First Creature Ear Sequence : " << binaryToString(first_creature_earStrand->getSequence()) << endl;
 	cout << "First Creature Ear getNumber() : " << first_creature_earStrand->getNumber() << endl;
