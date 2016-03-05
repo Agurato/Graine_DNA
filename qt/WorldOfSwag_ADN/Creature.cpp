@@ -2,7 +2,7 @@
 #include <ctime>
 
 #include "Creature.hpp"
-#include "../utils/utils.hpp"
+#include "utils/utils.hpp"
 
 Creature::Creature(int newid, DNA newdna) {
 	id = newid;
