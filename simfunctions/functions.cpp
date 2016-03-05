@@ -1,23 +1,22 @@
 #include "functions.hpp"
 
+using namespace std;
+
 DNA mating(DNA dnaStrand1, DNA dnaStrand2) {
 
 	int choice;
-	vector<Strand*> vectorDNAStrand1;
-	vector<Strand*> vectorDNAStrand2;
-	DNA newDNA();
+	DNA newDNA;
 
+	vector<Strand*> vectorDNAStrand1 = dnaStrand1.getDNAStrand();
+	vector<Strand*> vectorDNAStrand2 = dnaStrand2.getDNAStrand();
 	srand(time(0));
 
-	if(dnaStrand1.size() != dnaStrand2.size()) {
+	if(vectorDNAStrand1.size() != vectorDNAStrand2.size()) {
 		cerr << "Can't mate, creatures have mismatched DNA" << endl;
-		return NULL;
+		return newDNA;
 	}
 
-	vectorDNAStrand1 = dnaStrand1.getDNAStrand();
-	vectorDNAStrand2 = dnaStrand2.getDNAStrand();
-
-	for(int i = 0; i < dnaStrand1.size(); i++) {
+	for(int i = 0; i < vectorDNAStrand1.size(); i++) {
 		choice = rand()%2;
 		if(choice == 0) {
 			newDNA.addStrand(vectorDNAStrand1[i]);

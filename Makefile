@@ -10,5 +10,8 @@ mainEarStrandTest :
 mainCreatureTest :
 	g++ mainCreatureTest.cpp utils/utils.cpp parts/XMLData.cpp dna_strands/Strand.cpp dna_strands/EarStrand.cpp dna_strands/EyeStrand.cpp DNA.cpp Creature.cpp -o mainCreatureTest.out -std=c++11 -lxerces-c
 
+mainReproductionTest :
+	g++ mainReproductionTest.cpp utils/utils.cpp simfunctions/functions.cpp parts/XMLData.cpp dna_strands/Strand.cpp dna_strands/EarStrand.cpp dna_strands/EyeStrand.cpp DNA.cpp -o mainReproductionTest.out -std=c++11 -lxerces-c
+
 clean :
-	rm mainStrandTest.out parser.out utilsTest.out mainCreatureTest.out
+	rm mainStrandTest.out parser.out utilsTest.out mainCreatureTest.out mainReproductionTest.out

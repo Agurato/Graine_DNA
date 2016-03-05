@@ -13,7 +13,6 @@
 #include "dna_strands/MouthStrand.hpp"
 #include "dna_strands/NostrilStrand.hpp"
 
-#include "Creature.hpp"
 #include "DNA.hpp"
 
 using namespace std;
@@ -28,6 +27,17 @@ int main() {
 	DNA dna1;
 	DNA dna2;
 	DNA newDNA;
+
+	int first_earStrandNb;
+	int second_earStrandNb;
+	int newDNA_earStrandNb;
+
+	int first_eyeStrandNb;
+	int second_eyeStrandNb;
+	int newDNA_eyeStrandNb;
+
+
+	int i;
 
 /* FIRST DNA STRAND */
 /* Ear Strand */
