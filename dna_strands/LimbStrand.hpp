@@ -20,9 +20,9 @@ public:
 	std::vector<bool> getTypeBinOf(int index);
 	std::string getTypeOf(int index);
 
-	std::string getStrandType();
-	std::string toString();
-	std::string toString(std::string name);
+	virtual std::string getStrandType();
+	virtual std::string toString();
+	virtual std::string toString(std::string name);
 };
 
 #endif
