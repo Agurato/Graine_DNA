@@ -26,7 +26,7 @@ public:
 	static XMLData* getInstance();
 
 private:
-	int hairTypeLength = -1;
+	int skinColorLength = 24, hairTypeLength = -1;
 	int limbNbLength, limbSizeLength, limbTypeLength = -1;
 	int earNbLength;
 	int eyeColorLength = 24, eyeNbLength;
@@ -41,6 +41,7 @@ private:
 public:
 	int parseXML(std::string filePath);
 
+	int SKIN_COLOR_LENGTH();
 	int HAIR_TYPE_LENGTH();
 	std::vector<std::string> getHairTypes();
 	std::string getHairType(std::vector<bool> input);

@@ -181,7 +181,9 @@ void XMLData::parseDOMElement(DOMElement* element) {
 }
 
 /* Getters */
-
+int XMLData::SKIN_COLOR_LENGTH() {
+	return skinColorLength;
+}
 int XMLData::HAIR_TYPE_LENGTH() {
 	return hairTypeLength;
 }

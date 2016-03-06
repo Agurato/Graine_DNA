@@ -26,7 +26,16 @@ EyeStrand::EyeStrand(int limbNb) {
 
 EyeStrand::EyeStrand(vector<bool> colorBin, int eyeNb, vector<bool> locations) {
 	/* eye color */
-	sequence.insert(sequence.end(), colorBin.begin(), colorBin.end());
+	if(colorBin.size() > (unsigned) xml->EYE_COLOR_LENGTH()) {
+		colorBin = vector<bool>(colorBin.begin(), colorBin.begin()+xml->EYE_COLOR_LENGTH());
+	}
+	else if(colorBin.size() < (unsigned) xml->EYE_COLOR_LENGTH()) {
+		int i;
+		for(i=colorBin.size() ; i<xml->EYE_COLOR_LENGTH() ; i++) {
+			colorBin.push_back(0);
+		}
+	}
+	sequence.insert(sequence.end(), colorBin.begin(), colorBin.end()+xml->EYE_COLOR_LENGTH());
 
 	/* eye number */
 	if(eyeNb > pow(2, xml->EYE_NB_LENGTH())-1) {
@@ -57,7 +66,7 @@ vector<bool> EyeStrand::getColorBin() {
 }
 
 string EyeStrand::getColor() {
-	return string(binaryToHex(vector<bool>(sequence.begin(), sequence.begin()+xml->EYE_COLOR_LENGTH())));
+	return binaryToHex(getColorBin());
 }
 
 vector<bool> EyeStrand::getNumberBin() {
@@ -65,7 +74,7 @@ vector<bool> EyeStrand::getNumberBin() {
 }
 
 int EyeStrand::getNumber() {
-	return binaryToDec(vector<bool>(sequence.begin()+xml->EYE_COLOR_LENGTH(), sequence.begin()+xml->EYE_COLOR_LENGTH()+xml->EYE_NB_LENGTH()));
+	return binaryToDec(getNumberBin());
 }
 
 vector<bool> EyeStrand::getLocations() {
