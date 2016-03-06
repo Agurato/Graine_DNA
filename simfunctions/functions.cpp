@@ -2,26 +2,24 @@
 
 using namespace std;
 
-DNA* createRandomDNA() {
-	DNA *dna = new DNA();
+DNA createRandomDNA() {
+	DNA dna;
 	int limbNb;
 
-	LimbStrand limbStrand;
-	limbNb = limbStrand.getNumber();
+	LimbStrand* limbStrand = new LimbStrand();
+	limbNb = limbStrand->getNumber();
 
-	EarStrand earStrand(limbNb);
-	EyeStrand eyeStrand(limbNb);
-	MouthStrand mouthStrand(limbNb);
-	NostrilStrand nostrilStrand(limbNb);
+	// Merci Bastien <3
+	EarStrand* earStrand = new EarStrand(limbNb);
+	EyeStrand* eyeStrand = new EyeStrand(limbNb);
+	MouthStrand* mouthStrand = new MouthStrand(limbNb);
+	NostrilStrand* nostrilStrand = new NostrilStrand(limbNb);
 
-	dna->addStrand(&limbStrand);
-	dna->addStrand(&earStrand);
-	dna->addStrand(&eyeStrand);
-	dna->addStrand(&mouthStrand);
-	dna->addStrand(&nostrilStrand);
-
-	LimbStrand* limb = (LimbStrand*) dna->getDNAStrand()[0];
-	cout << limb->getNumber() << endl;
+	dna.addStrand(limbStrand);
+	dna.addStrand(earStrand);
+	dna.addStrand(eyeStrand);
+	dna.addStrand(mouthStrand);
+	dna.addStrand(nostrilStrand);
 
 	return dna;
 }
