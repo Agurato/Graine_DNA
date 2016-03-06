@@ -19,7 +19,6 @@ private:
 public:
 	DNA();
 	DNA(std::vector<Strand*> strands);
-	~DNA();
 
 	void addStrand(Strand* strand);
 

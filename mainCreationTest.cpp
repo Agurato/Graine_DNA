@@ -17,7 +17,7 @@ int main(int argc, char **argv) {
 	vector<Strand*> strands = dna->getDNAStrand();
 
 	LimbStrand* limb = (LimbStrand*) strands[0];
-	cout << limb->toString() << endl;
+	cout << limb->getNumber() << endl;
 
 	return 0;
 }

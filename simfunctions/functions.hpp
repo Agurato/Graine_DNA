@@ -15,5 +15,5 @@
 #include "../dna_strands/Strand.hpp"
 #include "../Creature.hpp"
 
-DNA* createRandomDNA();
+DNA createRandomDNA();
 DNA mating(DNA strand1, DNA strand2);

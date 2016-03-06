@@ -21,7 +21,3 @@ vector<Strand*> DNA::getDNAStrand() {
 void DNA::setDNAStrand(vector<Strand*> strands) {
 	dnaStrand = strands;
 }
-
-DNA::~DNA() {
-	return;
-}

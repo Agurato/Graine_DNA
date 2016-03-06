@@ -20,6 +20,9 @@ DNA* createRandomDNA() {
 	dna->addStrand(&mouthStrand);
 	dna->addStrand(&nostrilStrand);
 
+	LimbStrand* limb = (LimbStrand*) dna->getDNAStrand()[0];
+	cout << limb->getNumber() << endl;
+
 	return dna;
 }
 
