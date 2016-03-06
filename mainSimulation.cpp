@@ -1,6 +1,8 @@
 #include <iostream>
 #include <sstream>
+#include <fstream>
 #include <map>
+#include <ctime>
 #include "parts/XMLData.hpp"
 #include "simfunctions/functions.hpp"
 #include "DNA.hpp"
@@ -11,7 +13,7 @@
 
 using namespace std;
 
-string displayGenFur(int gen, map<int, Creature> creatures);
+string displayGenFur(int gen, map<int, Creature> creatures, vector<string>* saveLines);
 
 int main(int argc, char **argv) {
 	srand(time(0));
@@ -32,7 +34,9 @@ int main(int argc, char **argv) {
 		creatures.insert(pair<int, Creature>(counter, c));
 	}
 
-	cout << displayGenFur(gen, creatures);
+	vector<string> saveLines;
+
+	cout << displayGenFur(gen, creatures, &saveLines);
 
 	string command;
 
@@ -42,6 +46,7 @@ int main(int argc, char **argv) {
 		cin >> command;
 		if(command == "h" || command == "help") {
 			cout << "Enter \"+\" followed by a number x to advance of x generations" << endl;
+			cout << "Enter \"save\" to save the simulation as a .csv file" << endl;
 			cout << "Enter \"q\" or \"quit\" to quit the simulation" << endl;
 		}
 		else if(command.c_str()[0] == '+') {
@@ -101,16 +106,71 @@ int main(int argc, char **argv) {
 				creatures = nextGen;
 				gen++;
 
-				cout << displayGenFur(gen, creatures);
+				cout << displayGenFur(gen, creatures, &saveLines);
 			}
+		}
+		else if(command == "save") {
+			string line1 = "Génération,Nb total de créatures,Nb de créatures avec fourrure,% de créatures avec fourrure\n";
+			ofstream saveFile;
+			time_t now = time(0);
+			tm* date = localtime(&now);
+
+			stringstream ss;
+			ss << 1900+date->tm_year;
+			if(date->tm_mon+1 < 10) {
+				ss << "0" << date->tm_mon+1;
+			}
+			else {
+				ss << date->tm_mon+1;
+			}
+
+			if(date->tm_mday < 10) {
+				ss << "0" << date->tm_mday;
+			}
+			else {
+				ss << date->tm_mday;
+			}
+
+			if(date->tm_hour+1 < 10) {
+				ss << "0" << date->tm_hour+1;
+			}
+			else {
+				ss << date->tm_hour+1;
+			}
+
+			if(date->tm_min+1 < 10) {
+				ss << "0" << date->tm_min+1;
+			}
+			else {
+				ss << date->tm_min+1;
+			}
+
+			if(date->tm_sec+1 < 10) {
+				ss << "0" << date->tm_sec+1;
+			}
+			else {
+				ss << date->tm_sec+1;
+			}
+
+			ss << ".csv";
+			string filename = ss.str();
+			saveFile.open(filename);
+			saveFile << line1;
+			for(auto const& x : saveLines) {
+				saveFile << x;
+			}
+			cout << "Saved as " << filename << endl;
+			saveFile.close();
 		}
 	} while(command != "quit" && command != "q");
 
 	return 0;
 }
 
-string displayGenFur(int gen, map<int, Creature> creatures) {
-	stringstream ss;
+string displayGenFur(int gen, map<int, Creature> creatures, vector<string>* saveLines) {
+	stringstream ss, save;
+	ss.precision(5);
+	save.precision(5);
 
 	ss << "Génération n°" << gen << " : " << creatures.size() << " créatures vivantes ";
 
@@ -123,8 +183,10 @@ string displayGenFur(int gen, map<int, Creature> creatures) {
 		}
 	}
 	float percentage = nbFur/creatures.size()*100;
-	ss.precision(5);
 	ss << "(" << percentage << " % have fur)" << endl;
+
+	save << gen << "," << creatures.size() << "," << nbFur << "," << percentage << "%" << endl;
+	saveLines->push_back(save.str());
 
 	return ss.str();
 }

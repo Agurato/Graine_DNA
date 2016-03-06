@@ -59,3 +59,4 @@ clean :
 
 clean_all : clean
 	rm *.out
+	rm *.csv
