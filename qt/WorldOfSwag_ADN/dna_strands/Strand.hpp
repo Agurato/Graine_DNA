@@ -1,9 +1,12 @@
-#ifndef DEF_DNA_STRAND
-#define DEF_DNA_STRAND
+#ifndef DEF_STRAND
+#define DEF_STRAND
 
 #include "../parts/XMLData.hpp"
 #include <string>
 #include <vector>
+#include <cmath>
+#include <ctime>
+#include <sstream>
 
 class Strand {
 protected:
@@ -15,7 +18,8 @@ public:
 	}
 
 	virtual std::string getStrandType();
+	virtual std::string toString();
+	virtual std::string toString(std::string name);
 };
-
 
 #endif

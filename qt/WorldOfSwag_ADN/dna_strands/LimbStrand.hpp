@@ -1,15 +1,8 @@
 #ifndef DEF_LIMB_STRAND
 #define DEF_LIMB_STRAND
 
-#include <string>
-#include <vector>
-#include <cmath>
-#include <ctime>
-
 #include "Strand.hpp"
 #include "../utils/utils.hpp"
-
-enum limbTypeName {HAND, FEET, HOOF, HEAD};
 
 class LimbStrand: public Strand {
 public:
@@ -20,12 +13,16 @@ public:
 	int getNumber();
 
 	std::vector<bool> getSizes();
-	std::vector<bool> getSizeOf(int index);
+	std::vector<bool> getSizeBinOf(int index);
+	int getSizeOf(int index);
 
-	std::vector<bool> getTypes();
-	std::vector<bool> getTypeOf(int index);
+	std::vector<bool> getTypesBin();
+	std::vector<bool> getTypeBinOf(int index);
+	std::string getTypeOf(int index);
 
-	std::string getStrandType();
+	virtual std::string getStrandType();
+	virtual std::string toString();
+	virtual std::string toString(std::string name);
 };
 
 #endif

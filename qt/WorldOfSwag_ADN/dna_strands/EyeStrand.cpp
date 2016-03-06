@@ -3,7 +3,6 @@
 using namespace std;
 
 EyeStrand::EyeStrand(int limbNb) {
-	srand(time(0));
 	int i;
 
 	int eyeNb = rand() % ((int) pow(2, xml->EYE_NB_LENGTH()));
@@ -27,7 +26,16 @@ EyeStrand::EyeStrand(int limbNb) {
 
 EyeStrand::EyeStrand(vector<bool> colorBin, int eyeNb, vector<bool> locations) {
 	/* eye color */
-	sequence.insert(sequence.end(), colorBin.begin(), colorBin.end());
+	if(colorBin.size() > (unsigned) xml->EYE_COLOR_LENGTH()) {
+		colorBin = vector<bool>(colorBin.begin(), colorBin.begin()+xml->EYE_COLOR_LENGTH());
+	}
+	else if(colorBin.size() < (unsigned) xml->EYE_COLOR_LENGTH()) {
+		int i;
+		for(i=colorBin.size() ; i<xml->EYE_COLOR_LENGTH() ; i++) {
+			colorBin.push_back(0);
+		}
+	}
+	sequence.insert(sequence.end(), colorBin.begin(), colorBin.end()+xml->EYE_COLOR_LENGTH());
 
 	/* eye number */
 	if(eyeNb > pow(2, xml->EYE_NB_LENGTH())-1) {
@@ -40,10 +48,10 @@ EyeStrand::EyeStrand(vector<bool> colorBin, int eyeNb, vector<bool> locations) {
 	sequence.insert(sequence.end(), eyeNbBin.begin(), eyeNbBin.end());
 
 	/* eyes positions */
-	if(locations.size() > eyeNb*xml->LIMB_NB_LENGTH()) {
+	if(locations.size() > (unsigned) eyeNb*xml->LIMB_NB_LENGTH()) {
 		locations = vector<bool>(locations.begin(), locations.begin()+eyeNb*xml->LIMB_NB_LENGTH());
 	}
-	else if(locations.size() < eyeNb*xml->LIMB_NB_LENGTH()) {
+	else if(locations.size() < (unsigned) eyeNb*xml->LIMB_NB_LENGTH()) {
 		int i;
 		for(i=locations.size() ; i<eyeNb*xml->LIMB_NB_LENGTH() ; i++) {
 			locations.push_back(0);
@@ -58,7 +66,7 @@ vector<bool> EyeStrand::getColorBin() {
 }
 
 string EyeStrand::getColor() {
-	return string(binaryToHex(vector<bool>(sequence.begin(), sequence.begin()+xml->EYE_COLOR_LENGTH())));
+	return binaryToHex(getColorBin());
 }
 
 vector<bool> EyeStrand::getNumberBin() {
@@ -66,7 +74,7 @@ vector<bool> EyeStrand::getNumberBin() {
 }
 
 int EyeStrand::getNumber() {
-	return binaryToDec(vector<bool>(sequence.begin()+xml->EYE_COLOR_LENGTH(), sequence.begin()+xml->EYE_COLOR_LENGTH()+xml->EYE_NB_LENGTH()));
+	return binaryToDec(getNumberBin());
 }
 
 vector<bool> EyeStrand::getLocations() {
@@ -83,4 +91,38 @@ vector<bool> EyeStrand::getLocationOf(int index) {
 
 string EyeStrand::getStrandType() {
 	return "EyeStrand";
+}
+
+string EyeStrand::toString() {
+	std::stringstream ss;
+
+	int i = 0 , nb = getNumber();
+
+	ss << "Eye sequence : " << binaryToString(sequence) << endl;
+	ss << "Eye color : " << binaryToString(getColorBin()) << " = " << getColor() << endl;
+	ss << "Eye number : " << binaryToString(getNumberBin()) << " = " << nb << endl;
+	ss << "Eye locations : " << binaryToString(getLocations()) << endl;
+	for(i=0 ; i<nb ; i++) {
+		vector<bool> loc = getLocationOf(i);
+		ss << "Eye location of n°" << i << " : " << binaryToString(loc) << endl;
+	}
+
+	return ss.str();
+}
+
+string EyeStrand::toString(string name) {
+	std::stringstream ss;
+
+	int i = 0 , nb = getNumber();
+
+	ss << name << " sequence : " << binaryToString(sequence) << endl;
+	ss << name << " color : " << binaryToString(getColorBin()) << " = " << getColor() << endl;
+	ss << name << " number : " << binaryToString(getNumberBin()) << " = " << nb << endl;
+	ss << name << " locations : " << binaryToString(getLocations()) << endl;
+	for(i=0 ; i<nb ; i++) {
+		vector<bool> loc = getLocationOf(i);
+		ss << name << " location of n°" << i << " : " << binaryToString(loc) << endl;
+	}
+
+	return ss.str();
 }

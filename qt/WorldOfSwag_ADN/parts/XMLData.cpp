@@ -181,7 +181,9 @@ void XMLData::parseDOMElement(DOMElement* element) {
 }
 
 /* Getters */
-
+int XMLData::SKIN_COLOR_LENGTH() {
+	return skinColorLength;
+}
 int XMLData::HAIR_TYPE_LENGTH() {
 	return hairTypeLength;
 }
@@ -190,7 +192,7 @@ vector<string> XMLData::getHairTypes() {
 	return vector<string>(hairTypes.begin(), hairTypes.begin()+nbTypes);
 }
 string XMLData::getHairType(std::vector<bool> input) {
-	int index = binaryToDec(input);
+	unsigned index = binaryToDec(input);
 	if(index >= hairTypes.size()) {
 		return NULL;
 	}
@@ -211,9 +213,9 @@ vector<string> XMLData::getLimbTypes() {
 	return vector<string>(limbTypes.begin(), limbTypes.begin()+nbTypes);
 }
 string XMLData::getLimbType(std::vector<bool> input) {
-	int index = binaryToDec(input);
+	unsigned index = binaryToDec(input);
 	if(index >= limbTypes.size()) {
-		return NULL;
+		return "";
 	}
 	return limbTypes.at(index);
 }
@@ -237,7 +239,7 @@ vector<string> XMLData::getMouthWidthTypes() {
 	return vector<string>(mouthWidthTypes.begin(), mouthWidthTypes.begin()+nbTypes);
 }
 string XMLData::getMouthWidthType(std::vector<bool> input) {
-	int index = binaryToDec(input);
+	unsigned index = binaryToDec(input);
 	if(index >= mouthWidthTypes.size()) {
 		return NULL;
 	}
@@ -254,7 +256,7 @@ vector<string> XMLData::getTeethTypes() {
 	return vector<string>(teethTypes.begin(), teethTypes.begin()+nbTypes);
 }
 string XMLData::getTeethType(std::vector<bool> input) {
-	int index = binaryToDec(input);
+	unsigned index = binaryToDec(input);
 	if(index >= teethTypes.size()) {
 		return NULL;
 	}

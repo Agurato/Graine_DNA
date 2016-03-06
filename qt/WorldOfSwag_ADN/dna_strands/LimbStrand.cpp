@@ -4,7 +4,6 @@ using namespace std;
 
 LimbStrand::LimbStrand() {
 	int i=0;
-	srand(time(0));
 
 	int limbNb = rand()%((int) pow(2, xml->LIMB_NB_LENGTH()));
 
@@ -51,27 +50,69 @@ vector<bool> LimbStrand::getSizes() {
 }
 
 /* Renvoie la chaîne de booléens correspondanst à la taille du n° du membre passé en paramètre */
-vector<bool> LimbStrand::getSizeOf(int index) {
-	if(index < 1 || index > getNumber()) {
+vector<bool> LimbStrand::getSizeBinOf(int index) {
+	if(index < 0 || index >= getNumber()) {
 		return vector<bool>();
 	}
-	return vector<bool>(sequence.begin()+xml->LIMB_NB_LENGTH()+xml->LIMB_SIZE_LENGTH()*(index-1), sequence.begin()+xml->LIMB_NB_LENGTH()+xml->LIMB_SIZE_LENGTH()*index);
+	return vector<bool>(sequence.begin()+xml->LIMB_NB_LENGTH()+xml->LIMB_SIZE_LENGTH()*index, sequence.begin()+xml->LIMB_NB_LENGTH()+xml->LIMB_SIZE_LENGTH()*(index+1));
+}
+
+int LimbStrand::getSizeOf(int index) {
+	return binaryToDec(getSizeBinOf(index));
 }
 
 /* Renvoie la chaîne de booléens correspondant à la totalité des types */
-vector<bool> LimbStrand::getTypes() {
+vector<bool> LimbStrand::getTypesBin() {
 	return vector<bool>(sequence.begin()+xml->LIMB_NB_LENGTH()+xml->LIMB_SIZE_LENGTH()*getNumber(), sequence.end());
 }
 
 /* Renvoie la chaîne de booléens correspondanst au type du n° du membre passé en paramètre */
-vector<bool> LimbStrand::getTypeOf(int index) {
-	if(index <1 || index > getNumber()) {
+vector<bool> LimbStrand::getTypeBinOf(int index) {
+	if(index < 0 || index >= getNumber()) {
 		return vector<bool>();
 	}
-	return vector<bool>(sequence.begin()+xml->LIMB_NB_LENGTH()+xml->LIMB_SIZE_LENGTH()*getNumber()+xml->LIMB_TYPE_LENGTH()*(index-1),
-		sequence.begin()+xml->LIMB_NB_LENGTH()+xml->LIMB_SIZE_LENGTH()*getNumber()+xml->LIMB_TYPE_LENGTH()*index);
+	return vector<bool>(sequence.begin()+xml->LIMB_NB_LENGTH()+xml->LIMB_SIZE_LENGTH()*getNumber()+xml->LIMB_TYPE_LENGTH()*index,
+		sequence.begin()+xml->LIMB_NB_LENGTH()+xml->LIMB_SIZE_LENGTH()*getNumber()+xml->LIMB_TYPE_LENGTH()*(index+1));
+}
+
+string LimbStrand::getTypeOf(int index) {
+	return xml->getLimbType(getTypeBinOf(index));
 }
 
 string LimbStrand::getStrandType() {
 	return "LimbStrand";
+}
+
+string LimbStrand::toString() {
+	std::stringstream ss;
+
+	int i = 0 , nb = getNumber();
+
+	ss << "Limb sequence : " << binaryToString(sequence) << endl;
+	ss << "Limb number : " << binaryToString(getNumberBin()) << " = " << nb << endl;
+	ss << "Limb sizes : " << binaryToString(getSizes()) << endl;
+	ss << "Limb types : " << binaryToString(getTypesBin()) << endl;
+	for(i=0 ; i<nb ; i++) {
+		ss << "Limb size of n°" << i << " : " << binaryToString(getSizeBinOf(i)) << " = " << getSizeOf(i) << endl;
+		ss << "Limb type of n°" << i << " : " << binaryToString(getTypeBinOf(i)) << " = " << getTypeOf(i) << endl;
+	}
+
+	return ss.str();
+}
+
+string LimbStrand::toString(string name) {
+	std::stringstream ss;
+
+	int i = 0 , nb = getNumber();
+
+	ss << name << " sequence : " << binaryToString(sequence) << endl;
+	ss << name << " number : " << binaryToString(getNumberBin()) << " = " << nb << endl;
+	ss << name << " sizes : " << binaryToString(getSizes()) << endl;
+	ss << name << " types : " << binaryToString(getTypesBin()) << endl;
+	for(i=0 ; i<nb ; i++) {
+		ss << name << " size of n°" << i << " : " << binaryToString(getSizeBinOf(i)) << " = " << getSizeOf(i) << endl;
+		ss << name << " type of n°" << i << " : " << binaryToString(getTypeBinOf(i)) << " = " << getTypeOf(i) << endl;
+	}
+
+	return ss.str();
 }

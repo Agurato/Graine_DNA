@@ -3,7 +3,6 @@
 using namespace std;
 
 EarStrand::EarStrand(int limbNb) {
-	srand(time(0));
 	int i;
 
 	int earNb = rand() % ((int) pow(2, xml->EAR_NB_LENGTH()));
@@ -17,7 +16,6 @@ EarStrand::EarStrand(int limbNb) {
 		vector<bool> earLocationBin = decToBinary(rand()%limbNb+1, xml->LIMB_NB_LENGTH());
 		sequence.insert(sequence.end(), earLocationBin.begin(), earLocationBin.end());
 	}
-
 }
 
 EarStrand::EarStrand(int earNb, vector<bool> locations) {
@@ -33,10 +31,10 @@ EarStrand::EarStrand(int earNb, vector<bool> locations) {
 	sequence.insert(sequence.end(), earNbBin.begin(), earNbBin.end());
 
 	/* ears positions */
-	if(locations.size() > earNb*xml->LIMB_NB_LENGTH()) {
+	if(locations.size() > (unsigned) earNb*xml->LIMB_NB_LENGTH()) {
 		locations = vector<bool>(locations.begin(), locations.begin()+earNb*xml->LIMB_NB_LENGTH());
 	}
-	else if(locations.size() < earNb*xml->LIMB_NB_LENGTH()) {
+	else if(locations.size() < (unsigned) earNb*xml->LIMB_NB_LENGTH()) {
 		int i;
 		for(i=locations.size() ; i<earNb*xml->LIMB_NB_LENGTH() ; i++) {
 			locations.push_back(0);
@@ -67,4 +65,36 @@ vector<bool> EarStrand::getLocationOf(int index) {
 
 string EarStrand::getStrandType() {
 	return "EarStrand";
+}
+
+string EarStrand::toString() {
+	std::stringstream ss;
+
+	int i = 0 , nb = getNumber();
+
+	ss << "Ear sequence : " << binaryToString(sequence) << endl;
+	ss << "Ear number : " << binaryToString(getNumberBin()) << " = " << nb << endl;
+	ss << "Ear locations : " << binaryToString(getLocations()) << endl;
+	for(i=0 ; i<nb ; i++) {
+		vector<bool> loc = getLocationOf(i);
+		ss << "Ear location of n°" << i << " : " << binaryToString(loc) << endl;
+	}
+
+	return ss.str();
+}
+
+string EarStrand::toString(string name) {
+	std::stringstream ss;
+
+	int i = 0 , nb = getNumber();
+
+	ss << name << " sequence : " << binaryToString(sequence) << endl;
+	ss << name << " number : " << binaryToString(getNumberBin()) << " = " << nb << endl;
+	ss << name << " locations : " << binaryToString(getLocations()) << endl;
+	for(i=0 ; i<nb ; i++) {
+		vector<bool> loc = getLocationOf(i);
+		ss << name << " location of n°" << i << " : " << binaryToString(loc) << endl;
+	}
+
+	return ss.str();
 }

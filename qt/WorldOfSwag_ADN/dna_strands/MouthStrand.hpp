@@ -1,11 +1,6 @@
 #ifndef DEF_MOUTH_STRAND
 #define DEF_MOUTH_STRAND
 
-#include <string>
-#include <vector>
-#include <cmath>
-#include <ctime>
-
 #include "Strand.hpp"
 #include "../utils/utils.hpp"
 
@@ -20,12 +15,14 @@ public:
 	std::vector<bool> getTeethNbBin();
 	int getTeethNb();
 
-	std::vector<bool> getTeethTypeeBin();
+	std::vector<bool> getTeethTypeBin();
 	std::string getTeethType();
 
 	std::vector<bool> getLocation();
 
-	std::string getStrandType();
+	virtual std::string getStrandType();
+	virtual std::string toString();
+	virtual std::string toString(std::string name);
 };
 
 #endif

@@ -1,11 +1,6 @@
 #ifndef DEF_NOSTRIL_STRAND
 #define DEF_NOSTRIL_STRAND
 
-#include <string>
-#include <vector>
-#include <cmath>
-#include <ctime>
-
 #include "Strand.hpp"
 #include "../utils/utils.hpp"
 
@@ -20,7 +15,9 @@ public:
 	std::vector<bool> getLocations();
 	std::vector<bool> getLocationOf(int index);
 
-	std::string getStrandType();
+	virtual std::string getStrandType();
+	virtual std::string toString();
+	virtual std::string toString(std::string name);
 };
 
 #endif
