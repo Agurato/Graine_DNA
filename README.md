@@ -19,11 +19,11 @@ http://www.qt.io/download-open-source/
 wget http://www.apache.org/dist/xerces/c/3/sources/xerces-c-3.1.3.tar.bz2
 tar -xjvf xerces-c-3.1.3.tar.bz2
 cd xerces-c-3.1.3
-configure
+./configure
 make
 sudo make install
 ```
-Si à l'éxecution du programme, il y a une erreur :
+Si à l'éxecution du programme, il y a une erreur (à ajouter au ~/.bashrc) :
 ```shell
 export LD_LIBRARY_PATH=/usr/local/lib
 ```
