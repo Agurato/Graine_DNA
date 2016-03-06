@@ -8,6 +8,9 @@ utils= bin/utils/utils.o
 xml= bin/parts/XMLData.o
 all= $(strands) $(xml) $(utils) $(functions) bin/DNA.o bin/Creature.o
 
+simulation : bin/mainSimulation.o $(all)
+	$(CC) -o simulation.out $^ $(CFLAGS) $(LDFLAGS)
+
 parserTest : bin/mainParserTest.o $(utils) $(xml)
 	$(CC) -o parserTest.out $< $(utils) $(xml) $(CFLAGS) $(LDFLAGS)
 
@@ -26,7 +29,16 @@ reproductionTest : bin/mainReproductionTest.o $(functions) $(strands) $(utils) $
 creatureTest : bin/mainCreatureTest.o $(strands) $(utils) $(xml) bin/DNA.o bin/Creature.o
 	$(CC) -o creatureTest.out $^ $(CFLAGS) $(LDFLAGS)
 
+bin/mainSimulation.o : mainSimulation.cpp
+	$(CC) -o $@ -c $< $(CFLAGS)
+
 bin/%Test.o : %Test.cpp
+	$(CC) -o $@ -c $< $(CFLAGS)
+
+bin/DNA.o : DNA.cpp DNA.hpp
+	$(CC) -o $@ -c $< $(CFLAGS)
+
+bin/Creature.o : Creature.cpp Creature.hpp
 	$(CC) -o $@ -c $< $(CFLAGS)
 
 bin/utils/utils.o : utils/utils.cpp utils/utils.hpp
@@ -36,12 +48,6 @@ bin/parts/XMLData.o : parts/XMLData.cpp parts/XMLData.hpp
 	$(CC) -o $@ -c $< $(CFLAGS) $(LDFLAGS)
 
 bin/simfunctions/functions.o : simfunctions/functions.cpp simfunctions/functions.hpp
-	$(CC) -o $@ -c $< $(CFLAGS)
-
-bin/DNA.o : DNA.cpp DNA.hpp
-	$(CC) -o $@ -c $< $(CFLAGS)
-
-bin/Creature.o : Creature.cpp Creature.hpp
 	$(CC) -o $@ -c $< $(CFLAGS)
 
 bin/dna_strands/%.o: dna_strands/%.cpp dna_strands/%.hpp

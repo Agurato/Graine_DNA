@@ -8,7 +8,6 @@ MouthStrand::MouthStrand(int limbNb) {
 	int teethNb = rand()%((int) pow(2, xml->TEETH_NB_LENGTH()));
 	int teethType = rand()%((int) pow(2, xml->TEETH_TYPE_LENGTH()));
 
-
 	/* Mouth Type */
 	vector<bool> mouthTypeBin = decToBinary(mouthType, xml->MOUTH_WIDTH_LENGTH());
 	sequence.insert(sequence.end(), mouthTypeBin.begin(), mouthTypeBin.end());
@@ -22,7 +21,7 @@ MouthStrand::MouthStrand(int limbNb) {
 	sequence.insert(sequence.end(), teethTypeBin.begin(), teethTypeBin.end());
 
 	/* Mouth position */
-	vector<bool> mouthLocationBin = decToBinary(rand()%limbNb, xml->LIMB_NB_LENGTH());
+	vector<bool> mouthLocationBin = decToBinary(rand()%(limbNb+1), xml->LIMB_NB_LENGTH());
 	sequence.insert(sequence.end(), mouthLocationBin.begin(), mouthLocationBin.end());
 
 }

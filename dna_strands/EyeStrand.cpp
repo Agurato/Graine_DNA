@@ -18,7 +18,7 @@ EyeStrand::EyeStrand(int limbNb) {
 
 	/* Eyes positions */
 	for(i=0 ; i<eyeNb ; i++) {
-		vector<bool> eyeLocationBin = decToBinary(rand()%limbNb+1, xml->LIMB_NB_LENGTH());
+		vector<bool> eyeLocationBin = decToBinary(rand()%(limbNb+1), xml->LIMB_NB_LENGTH());
 		sequence.insert(sequence.end(), eyeLocationBin.begin(), eyeLocationBin.end());
 	}
 

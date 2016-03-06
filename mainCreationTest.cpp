@@ -15,18 +15,24 @@ int main(int argc, char **argv) {
 	DNA dna = createRandomDNA();
 	vector<Strand*> strands = dna.getDNAStrand();
 
-	LimbStrand* limb = (LimbStrand*) strands.at(0);
-	EarStrand* ear = (EarStrand*) strands.at(1);
-	EyeStrand* eye = (EyeStrand*) strands.at(2);
-	MouthStrand* mouth = (MouthStrand*) strands.at(3);
-	NostrilStrand* nostril = (NostrilStrand*) strands.at(4);
+	SkinStrand* skin = (SkinStrand*) strands.at(0);
+	LimbStrand* limb = (LimbStrand*) strands.at(1);
+	EarStrand* ear = (EarStrand*) strands.at(2);
+	EyeStrand* eye = (EyeStrand*) strands.at(3);
+	MouthStrand* mouth = (MouthStrand*) strands.at(4);
+	NostrilStrand* nostril = (NostrilStrand*) strands.at(5);
 
 	cout << "========================================" << endl << "========================================" << endl << "DNA N°0" << endl;
+	cout << skin->toString() << "----------------------------------------" << endl;
 	cout << limb->toString() << "----------------------------------------" << endl;
 	cout << ear->toString() << "----------------------------------------" << endl;
-	cout <<eye->toString() << "----------------------------------------" << endl;
-	cout <<mouth->toString() << "----------------------------------------" << endl;
-	cout <<nostril->toString() << endl;
+	cout << eye->toString() << "----------------------------------------" << endl;
+	cout << mouth->toString() << "----------------------------------------" << endl;
+	cout << nostril->toString() << endl;
+
+	if(skin->getHair() == "fur") {
+		cout << endl << endl << "FUR !!!" << endl;
+	}
 
 	return 0;
 }
