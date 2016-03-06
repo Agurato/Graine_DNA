@@ -7,11 +7,19 @@
 
 class DNA {
 private:
+	/* Il faut suivre cette suite dans dnaStrand :
+	- LimbStrand
+	- EarStrand
+	- EyeStrand
+	- MouthStrand
+	- NostrilStrand
+	*/
 	std::vector<Strand*> dnaStrand;
 
 public:
 	DNA();
 	DNA(std::vector<Strand*> strands);
+	~DNA();
 
 	void addStrand(Strand* strand);
 

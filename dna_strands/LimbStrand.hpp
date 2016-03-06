@@ -13,7 +13,8 @@ public:
 	int getNumber();
 
 	std::vector<bool> getSizes();
-	std::vector<bool> getSizeOf(int index);
+	std::vector<bool> getSizeBinOf(int index);
+	int getSizeOf(int index);
 
 	std::vector<bool> getTypesBin();
 	std::vector<bool> getTypeBinOf(int index);

@@ -1,12 +1,19 @@
 CC=g++
-CFLAGS= -std=c++11 -Wall -g
+CFLAGS= -std=c++11 -Wall
 LDFLAGS= -lxerces-c
+
+headers= $(shell find -name "*.hpp" | grep -v qt | cut -d/ -f 2,3)
+dnaStrandsTargets= EarStrand.o EyeStrand.o LimbStrand.o MouthStrand.o NostrilStrand.o Strand.o
+dnaStrandsObjects= bin/dna_strands/EarStrand.o bin/dna_strands/EyeStrand.o bin/dna_strands/LimbStrand.o bin/dna_strands/MouthStrand.o bin/dna_strands/NostrilStrand.o bin/dna_strands/Strand.o
 
 parserTest : mainParserTest.o utils.o XMLData.o
 	$(CC) -o parserTest.out bin/$< bin/utils/utils.o bin/parts/XMLData.o $(CFLAGS) $(LDFLAGS)
 
 utilsTest : mainUtilsTest.o utils.o
 	$(CC) -o utilsTest.out bin/$< bin/utils/utils.o $(CFLAGS) $(LDFLAGS)
+
+creationTest : mainCreationTest.o $(dnaStrandsTargets) functions.o utils.o XMLData.o DNA.o Creature.o $(headers)
+	$(CC) -o creationTest.out bin/$< bin/simfunctions/functions.o bin/utils/utils.o bin/parts/XMLData.o bin/DNA.o bin/Creature.o $(dnaStrandsObjects) $(CFLAGS) $(LDFLAGS)
 
 earStrandTest : mainEarStrandTest.o EarStrand.o Strand.o utils.o XMLData.o
 	$(CC) -o earStrandTest.out bin/$< bin/dna_strands/EarStrand.o bin/dna_strands/Strand.o bin/utils/utils.o bin/parts/XMLData.o $(CFLAGS) $(LDFLAGS)

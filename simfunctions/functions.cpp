@@ -2,6 +2,27 @@
 
 using namespace std;
 
+DNA* createRandomDNA() {
+	DNA *dna = new DNA();
+	int limbNb;
+
+	LimbStrand limbStrand;
+	limbNb = limbStrand.getNumber();
+
+	EarStrand earStrand(limbNb);
+	EyeStrand eyeStrand(limbNb);
+	MouthStrand mouthStrand(limbNb);
+	NostrilStrand nostrilStrand(limbNb);
+
+	dna->addStrand(&limbStrand);
+	dna->addStrand(&earStrand);
+	dna->addStrand(&eyeStrand);
+	dna->addStrand(&mouthStrand);
+	dna->addStrand(&nostrilStrand);
+
+	return dna;
+}
+
 DNA mating(DNA dnaStrand1, DNA dnaStrand2) {
 
 	int choice;
