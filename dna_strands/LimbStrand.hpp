@@ -1,11 +1,6 @@
 #ifndef DEF_LIMB_STRAND
 #define DEF_LIMB_STRAND
 
-#include <string>
-#include <vector>
-#include <cmath>
-#include <ctime>
-
 #include "Strand.hpp"
 #include "../utils/utils.hpp"
 

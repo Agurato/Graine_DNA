@@ -1,11 +1,6 @@
 #ifndef DEF_EYE_STRAND
 #define DEF_EYE_STRAND
 
-#include <string>
-#include <vector>
-#include <cmath>
-#include <ctime>
-
 #include "Strand.hpp"
 #include "../utils/utils.hpp"
 
