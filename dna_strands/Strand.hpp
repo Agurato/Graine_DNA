@@ -4,6 +4,7 @@
 #include "../parts/XMLData.hpp"
 #include <string>
 #include <vector>
+#include <sstream>
 
 class Strand {
 protected:
@@ -15,7 +16,8 @@ public:
 	}
 
 	virtual std::string getStrandType();
-	//virtual void getInfos();
+	virtual std::string toString();
+	virtual std::string toString(std::string name);
 };
 
 

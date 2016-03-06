@@ -9,8 +9,6 @@
 #include "Strand.hpp"
 #include "../utils/utils.hpp"
 
-enum limbTypeName {HAND, FEET, HOOF, HEAD};
-
 class LimbStrand: public Strand {
 public:
 	LimbStrand();
@@ -22,10 +20,13 @@ public:
 	std::vector<bool> getSizes();
 	std::vector<bool> getSizeOf(int index);
 
-	std::vector<bool> getTypes();
-	std::vector<bool> getTypeOf(int index);
+	std::vector<bool> getTypesBin();
+	std::vector<bool> getTypeBinOf(int index);
+	std::string getTypeOf(int index);
 
 	std::string getStrandType();
+	std::string toString();
+	std::string toString(std::string name);
 };
 
 #endif

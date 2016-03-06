@@ -8,6 +8,9 @@ parserTest : mainParserTest.o utils.o XMLData.o
 utilsTest : mainUtilsTest.o utils.o
 	$(CC) -o utilsTest.out bin/$< bin/utils/utils.o $(CFLAGS) $(LDFLAGS)
 
+earStrandTest : mainEarStrandTest.o EarStrand.o Strand.o utils.o XMLData.o
+	$(CC) -o earStrandTest.out bin/$< bin/dna_strands/EarStrand.o bin/dna_strands/Strand.o bin/utils/utils.o bin/parts/XMLData.o $(CFLAGS) $(LDFLAGS)
+
 reproductionTest : mainReproductionTest.o utils.o functions.o XMLData.o Strand.o EarStrand.o EyeStrand.o DNA.o
 	$(CC) -o reproductionTest.out bin/$< bin/utils/utils.o bin/simfunctions/functions.o bin/parts/XMLData.o bin/dna_strands/Strand.o bin/dna_strands/EarStrand.o bin/dna_strands/EyeStrand.o bin/DNA.o $(CFLAGS) $(LDFLAGS)
 

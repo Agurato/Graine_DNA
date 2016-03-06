@@ -83,3 +83,37 @@ vector<bool> EyeStrand::getLocationOf(int index) {
 string EyeStrand::getStrandType() {
 	return "EyeStrand";
 }
+
+string EyeStrand::toString() {
+	std::stringstream ss;
+
+	int i = 0 , nb = getNumber();
+
+	ss << "Eye sequence : " << binaryToString(sequence) << endl;
+	ss << "Eye color : " << binaryToString(getColorBin()) << " = " << getColor() << endl;
+	ss << "Eye number : " << binaryToString(getNumberBin()) << " = " << nb << endl;
+	ss << "Eye locations : " << binaryToString(getLocations()) << endl;
+	for(i=0 ; i<nb ; i++) {
+		vector<bool> loc = getLocationOf(i);
+		ss << "Eye location of n°" << i << " : " << binaryToString(loc) << endl;
+	}
+
+	return ss.str();
+}
+
+string EyeStrand::toString(string name) {
+	std::stringstream ss;
+
+	int i = 0 , nb = getNumber();
+
+	ss << name << " sequence : " << binaryToString(sequence) << endl;
+	ss << name << " color : " << binaryToString(getColorBin()) << " = " << getColor() << endl;
+	ss << name << " number : " << binaryToString(getNumberBin()) << " = " << nb << endl;
+	ss << name << " locations : " << binaryToString(getLocations()) << endl;
+	for(i=0 ; i<nb ; i++) {
+		vector<bool> loc = getLocationOf(i);
+		ss << name << " location of n°" << i << " : " << binaryToString(loc) << endl;
+	}
+
+	return ss.str();
+}

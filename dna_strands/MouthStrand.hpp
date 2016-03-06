@@ -20,12 +20,14 @@ public:
 	std::vector<bool> getTeethNbBin();
 	int getTeethNb();
 
-	std::vector<bool> getTeethTypeeBin();
+	std::vector<bool> getTeethTypeBin();
 	std::string getTeethType();
 
 	std::vector<bool> getLocation();
 
 	std::string getStrandType();
+	std::string toString();
+	std::string toString(std::string name);
 };
 
 #endif

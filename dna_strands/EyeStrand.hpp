@@ -24,6 +24,8 @@ public:
 	std::vector<bool> getLocationOf(int index);
 
 	std::string getStrandType();
+	std::string toString();
+	std::string toString(std::string name);
 };
 
 #endif

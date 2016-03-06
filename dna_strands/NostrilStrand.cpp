@@ -66,3 +66,33 @@ vector<bool> NostrilStrand::getLocationOf(int index) {
 string NostrilStrand::getStrandType() {
 	return "NostrilStrand";
 }
+
+string NostrilStrand::toString() {
+	std::stringstream ss;
+
+	int i = 0 , nb = getNumber();
+
+	ss << "Nostril sequence : " << binaryToString(sequence) << endl;
+	ss << "Nostril number : " << binaryToString(getNumberBin()) << " = " << nb << endl;
+	ss << "Nostril locations : " << binaryToString(getLocations()) << endl;
+	for(i=0 ; i<nb ; i++) {
+		ss << "Nostril location of n°" << i << " : " << binaryToString(getLocationOf(i)) << endl;
+	}
+
+	return ss.str();
+}
+
+string NostrilStrand::toString(string name) {
+	std::stringstream ss;
+
+	int i = 0 , nb = getNumber();
+
+	ss << name << " sequence : " << binaryToString(sequence) << endl;
+	ss << name << " number : " << binaryToString(getNumberBin()) << " = " << nb << endl;
+	ss << name << " locations : " << binaryToString(getLocations()) << endl;
+	for(i=0 ; i<nb ; i++) {
+		ss << name << " location of n°" << i << " : " << binaryToString(getLocationOf(i)) << endl;
+	}
+
+	return ss.str();
+}

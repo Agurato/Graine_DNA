@@ -66,3 +66,35 @@ vector<bool> EarStrand::getLocationOf(int index) {
 string EarStrand::getStrandType() {
 	return "EarStrand";
 }
+
+string EarStrand::toString() {
+	std::stringstream ss;
+
+	int i = 0 , nb = getNumber();
+
+	ss << "Ear sequence : " << binaryToString(sequence) << endl;
+	ss << "Ear number : " << binaryToString(getNumberBin()) << " = " << nb << endl;
+	ss << "Ear locations : " << binaryToString(getLocations()) << endl;
+	for(i=0 ; i<nb ; i++) {
+		vector<bool> loc = getLocationOf(i);
+		ss << "Ear location of n°" << i << " : " << binaryToString(loc) << endl;
+	}
+
+	return ss.str();
+}
+
+string EarStrand::toString(string name) {
+	std::stringstream ss;
+
+	int i = 0 , nb = getNumber();
+
+	ss << name << " sequence : " << binaryToString(sequence) << endl;
+	ss << name << " number : " << binaryToString(getNumberBin()) << " = " << nb << endl;
+	ss << name << " locations : " << binaryToString(getLocations()) << endl;
+	for(i=0 ; i<nb ; i++) {
+		vector<bool> loc = getLocationOf(i);
+		ss << name << " location of n°" << i << " : " << binaryToString(loc) << endl;
+	}
+
+	return ss.str();
+}

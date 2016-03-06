@@ -22,15 +22,18 @@ int main() {
 	vector<bool> location = decToBinary(4, 4);
 	vector<bool> location2 = decToBinary(7, 4);
 	location.insert(location.end(), location2.begin(), location2.end());
-	int i;
+	//int i;
 
 	/* Ears Test */
 
 	cout << "First Ear : RANDOM MODE" << endl;
 	EarStrand first_earStrand(4);
 
-	int first_earStrandNb = first_earStrand.getNumber();
+	//int first_earStrandNb = first_earStrand.getNumber();
 
+	cout << first_earStrand.toString() << endl;
+
+	/*
 	cout << "First Ear Sequence : " << binaryToString(first_earStrand.getSequence()) << endl;
 	cout << "First Ear getNumber() : " << first_earStrandNb << endl;
 	cout << "First Ear getNumberBin() : " << binaryToString(first_earStrand.getNumberBin()) << endl;
@@ -38,7 +41,7 @@ int main() {
 	for(i = 0; i < first_earStrandNb; i++) {
 		cout << "First Ear getLocationOf(" << i << ") :" << binaryToString(first_earStrand.getLocationOf(i)) << endl;
 	}
-
+	*/
 
 	cout << "Second Ear : SET MODE" << endl;
 	EarStrand second_earStrand(2, location);

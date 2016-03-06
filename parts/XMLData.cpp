@@ -213,7 +213,7 @@ vector<string> XMLData::getLimbTypes() {
 string XMLData::getLimbType(std::vector<bool> input) {
 	unsigned index = binaryToDec(input);
 	if(index >= limbTypes.size()) {
-		return NULL;
+		return "";
 	}
 	return limbTypes.at(index);
 }

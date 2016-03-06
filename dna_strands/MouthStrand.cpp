@@ -64,11 +64,7 @@ vector<bool> MouthStrand::getMouthTypeBin() {
 }
 
 string MouthStrand::getMouthType() {
-	/* TODO :
-		Return the according type of the mouth in string (i.e. : "small", "large", etc.)
-	*/
-
-	return "Not Done Yet.\n";
+	return xml->getMouthWidthType(getMouthTypeBin());
 }
 
 vector<bool> MouthStrand::getTeethNbBin() {
@@ -79,16 +75,12 @@ int MouthStrand::getTeethNb() {
 	return binaryToDec(vector<bool>(sequence.begin()+xml->MOUTH_WIDTH_LENGTH(), sequence.begin()+xml->MOUTH_WIDTH_LENGTH()+xml->TEETH_NB_LENGTH()));
 }
 
-vector<bool> MouthStrand::getTeethTypeeBin() {
+vector<bool> MouthStrand::getTeethTypeBin() {
 	return vector<bool>(sequence.begin()+xml->MOUTH_WIDTH_LENGTH()+xml->TEETH_NB_LENGTH(), sequence.begin()+xml->MOUTH_WIDTH_LENGTH()+xml->TEETH_NB_LENGTH()+xml->TEETH_TYPE_LENGTH());
 }
 
 string MouthStrand::getTeethType() {
-	/* TODO :
-		Return the according type of the mouth in string (i.e. : "small", "large", etc.)
-	*/
-
-	return "Not Done Yet.\n";
+	return xml->getTeethType(getTeethTypeBin());
 }
 
 vector<bool> MouthStrand::getLocation() {
@@ -97,4 +89,28 @@ vector<bool> MouthStrand::getLocation() {
 
 string MouthStrand::getStrandType() {
 	return "MouthStrand";
+}
+
+string MouthStrand::toString() {
+	std::stringstream ss;
+
+	ss << "Mouth sequence : " << binaryToString(sequence) << endl;
+	ss << "Mouth type : " << binaryToString(getMouthTypeBin()) << " = " << getMouthType() << endl;
+	ss << "Mouth : teeth number : " << binaryToString(getTeethNbBin()) << " = " << getTeethNb() << endl;
+	ss << "Mouth : teeth type : " << binaryToString(getTeethTypeBin()) << " = " << getTeethType() << endl;
+	ss << "Mouth location : " << binaryToString(getLocation()) << endl;
+
+	return ss.str();
+}
+
+string MouthStrand::toString(string name) {
+	std::stringstream ss;
+
+	ss << name << " sequence : " << binaryToString(sequence) << endl;
+	ss << name << " type : " << binaryToString(getMouthTypeBin()) << " = " << getMouthType() << endl;
+	ss << name << " : teeth number : " << binaryToString(getTeethNbBin()) << " = " << getTeethNb() << endl;
+	ss << name << " : teeth type : " << binaryToString(getTeethTypeBin()) << " = " << getTeethType() << endl;
+	ss << name << " location : " << binaryToString(getLocation()) << endl;
+
+	return ss.str();
 }
