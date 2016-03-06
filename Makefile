@@ -2,48 +2,50 @@ CC=g++
 CFLAGS= -std=c++11 -Wall
 LDFLAGS= -lxerces-c
 
-headers= $(shell find -name "*.hpp" | grep -v qt | cut -d/ -f 2,3)
-dnaStrandsTargets= EarStrand.o EyeStrand.o LimbStrand.o MouthStrand.o NostrilStrand.o Strand.o
-dnaStrandsObjects= bin/dna_strands/EarStrand.o bin/dna_strands/EyeStrand.o bin/dna_strands/LimbStrand.o bin/dna_strands/MouthStrand.o bin/dna_strands/NostrilStrand.o bin/dna_strands/Strand.o
+functions= bin/simfunctions/functions.o
+strands= bin/dna_strands/EarStrand.o bin/dna_strands/EyeStrand.o bin/dna_strands/LimbStrand.o bin/dna_strands/MouthStrand.o bin/dna_strands/NostrilStrand.o bin/dna_strands/SkinStrand.o bin/dna_strands/Strand.o
+utils= bin/utils/utils.o
+xml= bin/parts/XMLData.o
+all= $(strands) $(xml) $(utils) $(functions) bin/DNA.o bin/Creature.o
 
-parserTest : mainParserTest.o utils.o XMLData.o
-	$(CC) -o parserTest.out bin/$< bin/utils/utils.o bin/parts/XMLData.o $(CFLAGS) $(LDFLAGS)
+parserTest : bin/mainParserTest.o $(utils) $(xml)
+	$(CC) -o parserTest.out $< $(utils) $(xml) $(CFLAGS) $(LDFLAGS)
 
-utilsTest : mainUtilsTest.o utils.o
-	$(CC) -o utilsTest.out bin/$< bin/utils/utils.o $(CFLAGS) $(LDFLAGS)
+utilsTest : bin/mainUtilsTest.o $(utils)
+	$(CC) -o utilsTest.out $< $(utils) $(CFLAGS)
 
-creationTest : mainCreationTest.o $(dnaStrandsTargets) functions.o utils.o XMLData.o DNA.o Creature.o $(headers)
-	$(CC) -o creationTest.out bin/$< bin/simfunctions/functions.o bin/utils/utils.o bin/parts/XMLData.o bin/DNA.o bin/Creature.o $(dnaStrandsObjects) $(CFLAGS) $(LDFLAGS)
+creationTest : bin/mainCreationTest.o $(all)
+	$(CC) -o creationTest.out $^ $(CFLAGS) $(LDFLAGS)
 
-earStrandTest : mainEarStrandTest.o EarStrand.o Strand.o utils.o XMLData.o
-	$(CC) -o earStrandTest.out bin/$< bin/dna_strands/EarStrand.o bin/dna_strands/Strand.o bin/utils/utils.o bin/parts/XMLData.o $(CFLAGS) $(LDFLAGS)
+earStrandTest : bin/mainEarStrandTest.o $(strands) $(utils) $(xml)
+	$(CC) -o earStrandTest.out $^ $(CFLAGS) $(LDFLAGS)
 
-reproductionTest : mainReproductionTest.o utils.o functions.o XMLData.o Strand.o EarStrand.o EyeStrand.o DNA.o
-	$(CC) -o reproductionTest.out bin/$< bin/utils/utils.o bin/simfunctions/functions.o bin/parts/XMLData.o bin/dna_strands/Strand.o bin/dna_strands/EarStrand.o bin/dna_strands/EyeStrand.o bin/DNA.o $(CFLAGS) $(LDFLAGS)
+reproductionTest : bin/mainReproductionTest.o $(functions) $(strands) $(utils) $(xml) bin/DNA.o
+	$(CC) -o reproductionTest.out $^ $(CFLAGS) $(LDFLAGS)
 
-creatureTest : mainCreatureTest.o utils.o XMLData.o Strand.o EarStrand.o EyeStrand.o DNA.o Creature.o
-	$(CC) -o creatureTest.out bin/$< bin/utils/utils.o bin/parts/XMLData.o bin/dna_strands/Strand.o bin/dna_strands/EarStrand.o bin/dna_strands/EyeStrand.o bin/DNA.o bin/Creature.o $(CFLAGS) $(LDFLAGS)
+creatureTest : bin/mainCreatureTest.o $(strands) $(utils) $(xml) bin/DNA.o bin/Creature.o
+	$(CC) -o creatureTest.out $^ $(CFLAGS) $(LDFLAGS)
 
-%Test.o : %Test.cpp
-	$(CC) -o bin/$@ -c $< $(CFLAGS)
+bin/%Test.o : %Test.cpp
+	$(CC) -o $@ -c $< $(CFLAGS)
 
-utils.o : utils/utils.cpp utils/utils.hpp
-	$(CC) -o bin/utils/utils.o -c $< $(CFLAGS)
+bin/utils/utils.o : utils/utils.cpp utils/utils.hpp
+	$(CC) -o $@ -c $< $(CFLAGS)
 
-XMLData.o : parts/XMLData.cpp parts/XMLData.hpp
-	$(CC) -o bin/parts/XMLData.o -c $< $(CFLAGS) $(LDFLAGS)
+bin/parts/XMLData.o : parts/XMLData.cpp parts/XMLData.hpp
+	$(CC) -o $@ -c $< $(CFLAGS) $(LDFLAGS)
 
-functions.o : simfunctions/functions.cpp simfunctions/functions.hpp
-	$(CC) -o bin/simfunctions/functions.o -c $< $(CFLAGS)
+bin/simfunctions/functions.o : simfunctions/functions.cpp simfunctions/functions.hpp
+	$(CC) -o $@ -c $< $(CFLAGS)
 
-DNA.o : DNA.cpp DNA.hpp
-	$(CC) -o bin/DNA.o -c $< $(CFLAGS)
+bin/DNA.o : DNA.cpp DNA.hpp
+	$(CC) -o $@ -c $< $(CFLAGS)
 
-Creature.o : Creature.cpp Creature.hpp
-	$(CC) -o bin/Creature.o -c $< $(CFLAGS)
+bin/Creature.o : Creature.cpp Creature.hpp
+	$(CC) -o $@ -c $< $(CFLAGS)
 
-%.o: dna_strands/%.cpp dna_strands/%.hpp
-	$(CC) -o bin/dna_strands/$@ -c $< $(CFLAGS)
+bin/dna_strands/%.o: dna_strands/%.cpp dna_strands/%.hpp
+	$(CC) -o $@ -c $< $(CFLAGS)
 
 clean :
 	rm bin/*.o

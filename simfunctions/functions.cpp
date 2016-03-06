@@ -2,8 +2,6 @@
 
 using namespace std;
 
-enum MutationTypes {add = 0, del, sub};
-
 DNA createRandomDNA() {
 	DNA dna;
 	int limbNb;
@@ -64,7 +62,7 @@ DNA matingMut(DNA dnaStrand1, DNA dnaStrand2) {
 	MutationTypes mutationType;
 	int mutationPlace;
 	vector<Strand*> mutatedDNAStrand;
-	DNA newDNA;
+	DNA newDNA, mutatedDNA;
 
 	vector<Strand*> vectorDNAStrand1 = dnaStrand1.getDNAStrand();
 	vector<Strand*> vectorDNAStrand2 = dnaStrand2.getDNAStrand();
@@ -90,14 +88,14 @@ DNA matingMut(DNA dnaStrand1, DNA dnaStrand2) {
 	if(mutation == 1) {
 
 		mutatedDNA = newDNA.getDNAStrand();
-		mutationPlace = rand()%mutatedDNA.size();
+		mutationPlace = rand()%mutatedDNA.getDNAStrand().size();
 		mutationType = MutationTypes(rand()%3);
 
 		if(mutationType == add) {
 			newDNA.setDNAStrand(AddMutation(mutatedDNA, mutationPlace, mutationType));
 		}
 		else if(mutationType == del) {
-			newDNA.setDNAStrand(Delmutation(mutatedDNA, mutationPlace, mutationType));
+			newDNA.setDNAStrand(DelMutation(mutatedDNA, mutationPlace, mutationType));
 		}
 		else {
 			newDNA.setDNAStrand(SubMutation(mutatedDNA, mutationPlace, mutationType));
@@ -107,13 +105,13 @@ DNA matingMut(DNA dnaStrand1, DNA dnaStrand2) {
 }
 
 vector<Strand*> AddMutation(DNA mutatedDNA, int mutationPlace, MutationTypes mutationType) {
-	return mutatedDNA;
+	return mutatedDNA.getDNAStrand();
 }
 
 vector<Strand*> DelMutation(DNA mutatedDNA, int mutationPlace, MutationTypes mutationType) {
-	return mutatedDNA;
+	return mutatedDNA.getDNAStrand();
 }
 
 vector<Strand*> SubMutation(DNA mutatedDNA, int mutationPlace, MutationTypes mutationType) {
-	return mutatedDNA;
+	return mutatedDNA.getDNAStrand();
 }
