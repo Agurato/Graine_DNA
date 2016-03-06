@@ -46,10 +46,10 @@ MouthStrand::MouthStrand(std::vector<bool> mouthType, int teethNb, std::vector<b
 	sequence.insert(sequence.end(), teethType.begin(), teethType.end());
 
 	/* Mouth Position */
-	if(locations.size() > teethNb*xml->LIMB_NB_LENGTH()) {
+	if(locations.size() > (unsigned) teethNb*xml->LIMB_NB_LENGTH()) {
 		locations = vector<bool>(locations.begin(), locations.begin()+teethNb*xml->LIMB_NB_LENGTH());
 	}
-	else if(locations.size() < teethNb*xml->LIMB_NB_LENGTH()) {
+	else if(locations.size() < (unsigned) teethNb*xml->LIMB_NB_LENGTH()) {
 		int i;
 		for(i=locations.size() ; i < teethNb*xml->LIMB_NB_LENGTH() ; i++) {
 			locations.push_back(0);

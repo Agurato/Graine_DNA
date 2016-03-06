@@ -7,7 +7,6 @@ using namespace std;
 int main(int argc, char **argv) {
 
 	XMLData* xml = XMLData::getInstance();
-
 	string file;
 	if(argc < 2) {
 		file = "parts/codes.xml";

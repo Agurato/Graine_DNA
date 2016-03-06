@@ -15,6 +15,7 @@ public:
 	}
 
 	virtual std::string getStrandType();
+	//virtual void getInfos();
 };
 
 

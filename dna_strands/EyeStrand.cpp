@@ -39,10 +39,10 @@ EyeStrand::EyeStrand(vector<bool> colorBin, int eyeNb, vector<bool> locations) {
 	sequence.insert(sequence.end(), eyeNbBin.begin(), eyeNbBin.end());
 
 	/* eyes positions */
-	if(locations.size() > eyeNb*xml->LIMB_NB_LENGTH()) {
+	if(locations.size() > (unsigned) eyeNb*xml->LIMB_NB_LENGTH()) {
 		locations = vector<bool>(locations.begin(), locations.begin()+eyeNb*xml->LIMB_NB_LENGTH());
 	}
-	else if(locations.size() < eyeNb*xml->LIMB_NB_LENGTH()) {
+	else if(locations.size() < (unsigned) eyeNb*xml->LIMB_NB_LENGTH()) {
 		int i;
 		for(i=locations.size() ; i<eyeNb*xml->LIMB_NB_LENGTH() ; i++) {
 			locations.push_back(0);

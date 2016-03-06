@@ -15,7 +15,7 @@ DNA mating(DNA dnaStrand1, DNA dnaStrand2) {
 		return newDNA;
 	}
 
-	for(int i = 0; i < vectorDNAStrand1.size(); i++) {
+	for(unsigned i = 0; i < vectorDNAStrand1.size(); i++) {
 		choice = rand()%2;
 		if(choice == 0) {
 			newDNA.addStrand(vectorDNAStrand1[i]);

@@ -16,7 +16,6 @@ EarStrand::EarStrand(int limbNb) {
 		vector<bool> earLocationBin = decToBinary(rand()%limbNb+1, xml->LIMB_NB_LENGTH());
 		sequence.insert(sequence.end(), earLocationBin.begin(), earLocationBin.end());
 	}
-
 }
 
 EarStrand::EarStrand(int earNb, vector<bool> locations) {
@@ -32,10 +31,10 @@ EarStrand::EarStrand(int earNb, vector<bool> locations) {
 	sequence.insert(sequence.end(), earNbBin.begin(), earNbBin.end());
 
 	/* ears positions */
-	if(locations.size() > earNb*xml->LIMB_NB_LENGTH()) {
+	if(locations.size() > (unsigned) earNb*xml->LIMB_NB_LENGTH()) {
 		locations = vector<bool>(locations.begin(), locations.begin()+earNb*xml->LIMB_NB_LENGTH());
 	}
-	else if(locations.size() < earNb*xml->LIMB_NB_LENGTH()) {
+	else if(locations.size() < (unsigned) earNb*xml->LIMB_NB_LENGTH()) {
 		int i;
 		for(i=locations.size() ; i<earNb*xml->LIMB_NB_LENGTH() ; i++) {
 			locations.push_back(0);

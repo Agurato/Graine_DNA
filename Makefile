@@ -1,17 +1,43 @@
-parser :
-	g++ mainParserTest.cpp parts/XMLData.cpp utils/utils.cpp -o parser.out -std=c++11 -lxerces-c
+CC=g++
+CFLAGS= -std=c++11 -Wall -g
+LDFLAGS= -lxerces-c
 
-utilsTest :
-	g++ mainUtilsTest.cpp utils/utils.cpp -o utilsTest.out -std=c++11
+parserTest : mainParserTest.o utils.o XMLData.o
+	$(CC) -o parserTest.out bin/$< bin/utils/utils.o bin/parts/XMLData.o $(CFLAGS) $(LDFLAGS)
 
-mainEarStrandTest :
-	g++ mainEarStrandTest.cpp utils/utils.cpp dna_strands/EarStrand.cpp -o mainEarStrandTest.out -std=c++11
+utilsTest : mainUtilsTest.o utils.o
+	$(CC) -o utilsTest.out bin/$< bin/utils/utils.o $(CFLAGS) $(LDFLAGS)
 
-mainCreatureTest :
-	g++ mainCreatureTest.cpp utils/utils.cpp parts/XMLData.cpp dna_strands/Strand.cpp dna_strands/EarStrand.cpp dna_strands/EyeStrand.cpp DNA.cpp Creature.cpp -o mainCreatureTest.out -std=c++11 -lxerces-c
+reproductionTest : mainReproductionTest.o utils.o functions.o XMLData.o Strand.o EarStrand.o EyeStrand.o DNA.o
+	$(CC) -o reproductionTest.out bin/$< bin/utils/utils.o bin/simfunctions/functions.o bin/parts/XMLData.o bin/dna_strands/Strand.o bin/dna_strands/EarStrand.o bin/dna_strands/EyeStrand.o bin/DNA.o $(CFLAGS) $(LDFLAGS)
 
-mainReproductionTest :
-	g++ mainReproductionTest.cpp utils/utils.cpp simfunctions/functions.cpp parts/XMLData.cpp dna_strands/Strand.cpp dna_strands/EarStrand.cpp dna_strands/EyeStrand.cpp DNA.cpp -o mainReproductionTest.out -std=c++11 -lxerces-c
+creatureTest : mainCreatureTest.o utils.o XMLData.o Strand.o EarStrand.o EyeStrand.o DNA.o Creature.o
+	$(CC) -o creatureTest.out bin/$< bin/utils/utils.o bin/parts/XMLData.o bin/dna_strands/Strand.o bin/dna_strands/EarStrand.o bin/dna_strands/EyeStrand.o bin/DNA.o bin/Creature.o $(CFLAGS) $(LDFLAGS)
+
+%Test.o : %Test.cpp
+	$(CC) -o bin/$@ -c $< $(CFLAGS)
+
+utils.o : utils/utils.cpp utils/utils.hpp
+	$(CC) -o bin/utils/utils.o -c $< $(CFLAGS)
+
+XMLData.o : parts/XMLData.cpp parts/XMLData.hpp
+	$(CC) -o bin/parts/XMLData.o -c $< $(CFLAGS) $(LDFLAGS)
+
+functions.o : simfunctions/functions.cpp simfunctions/functions.hpp
+	$(CC) -o bin/simfunctions/functions.o -c $< $(CFLAGS)
+
+DNA.o : DNA.cpp DNA.hpp
+	$(CC) -o bin/DNA.o -c $< $(CFLAGS)
+
+Creature.o : Creature.cpp Creature.hpp
+	$(CC) -o bin/Creature.o -c $< $(CFLAGS)
+
+%.o: dna_strands/%.cpp dna_strands/%.hpp
+	$(CC) -o bin/dna_strands/$@ -c $< $(CFLAGS)
 
 clean :
-	rm mainStrandTest.out parser.out utilsTest.out mainCreatureTest.out mainReproductionTest.out
+	rm bin/*.o
+	rm bin/*/*.o
+
+clean_all : clean
+	rm *.out
