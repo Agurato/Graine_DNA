@@ -1,0 +1,11 @@
+Pour démarrer la simulation, il faut exécuter le programme. Il est possible de rentrer un nombre pour définir le nombre de créatures au départ.
+
+Une fois dans le programme, il est possible d'obtenir la page d'aide à l'aide de la commande "h" ou "help".
+
+// ICI start+help.png
+
+Pour avancer le programme d'un certain nombre de générations, il suffit de rentrer "+", suivi du nombre de générations dont on veut avancer dans le temps
+
+Il est possible d'enregistrer le rendu des créatures créés sous forme de fichier .csv. Le nom de ce fichier .csv est la date et l'heure de la sauvegarde.
+Ce fichier est sauvegardé sous la forme :
+N°Génération NbTotalCréatures NbCréaturesFourrure %CréaturesFourrure

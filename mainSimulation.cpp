@@ -45,6 +45,7 @@ int main(int argc, char **argv) {
 		if(command == "h" || command == "help") {
 			cout << "Enter \"+\" followed by a number x to advance of x generations" << endl;
 			cout << "Enter \"save\" to save the simulation as a .csv file" << endl;
+			cout << "Enter \"h\" or \"help\" to print the help page" << endl;
 			cout << "Enter \"q\" or \"quit\" to quit the simulation" << endl;
 		}
 		else if(command.c_str()[0] == '+') {
