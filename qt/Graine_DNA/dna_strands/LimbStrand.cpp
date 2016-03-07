@@ -5,7 +5,7 @@ using namespace std;
 LimbStrand::LimbStrand() {
 	int i=0;
 
-	int limbNb = rand()%((int) pow(2, xml->LIMB_NB_LENGTH()));
+    int limbNb = rand()%((int) pow(2, xml->LIMB_NB_LENGTH()));
 
 	/* Limb number */
 	vector<bool> limbNbBin = decToBinary(limbNb, xml->LIMB_NB_LENGTH());

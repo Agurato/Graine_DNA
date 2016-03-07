@@ -9,7 +9,8 @@ DNA createRandomDNA() {
 	LimbStrand* limbStrand = new LimbStrand();
 	limbNb = limbStrand->getNumber();
 
-	// Merci Bastien <3
+
+    // Merci Bastien <3
 	SkinStrand* skinStrand = new SkinStrand();
 	EarStrand* earStrand = new EarStrand(limbNb);
 	EyeStrand* eyeStrand = new EyeStrand(limbNb);
@@ -191,6 +192,29 @@ void registerGen(int gen, map<int, Creature> creatures, vector<string>* saveLine
 
 	save << gen << " " << creatures.size() << " " << nbFur << " " << percentage << endl;
 	saveLines->push_back(save.str());
+}
+
+string displayGenFur(int gen, map<int, Creature> creatures) {
+    stringstream ss, save;
+    ss.precision(5);
+    save.precision(5);
+
+    ss << "Génération n°" << gen << " : " << creatures.size() << " créatures vivantes ";
+
+    float nbFur = 0;
+    for(auto const& x : creatures) {
+        Creature c = x.second;
+        SkinStrand *skin = (SkinStrand*) c.getDNA().getDNAStrand().find("skin")->second;
+        if(skin->getHair() == "fur") {
+            nbFur ++;
+        }
+    }
+    float percentage = nbFur/creatures.size()*100;
+    ss << "(" << percentage << " % have fur)" << endl;
+
+    save << gen << " " << creatures.size() << " " << nbFur << " " << percentage << endl;
+
+    return ss.str();
 }
 
 void saveCsv(vector<string> saveLines) {

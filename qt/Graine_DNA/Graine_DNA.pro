@@ -49,3 +49,6 @@ unix:!macx: LIBS += -L$$PWD/../../../../../../../usr/local/lib/ -lxerces-c-3.1
 
 INCLUDEPATH += $$PWD/../../../../../../../usr/local/include
 DEPENDPATH += $$PWD/../../../../../../../usr/local/include
+
+DISTFILES += \
+    sim/codes.xml

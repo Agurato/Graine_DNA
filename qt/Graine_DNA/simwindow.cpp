@@ -1,13 +1,9 @@
 #include "simwindow.h"
 #include "ui_simwindow.h"
-#include "sim/XMLData.hpp"
-#include "sim/functions.hpp"
-#include "DNA.hpp"
-#include "Creature.hpp"
-#include <ctime>
-#include <sstream>
-#include <map>
-#include <vector>
+
+#include <QAbstractItemView>
+#include <QString>
+#include <QTableWidgetItem>
 
 using namespace std;
 
@@ -17,12 +13,13 @@ SimWindow::SimWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(ui->advanceButton, SIGNAL(clicked()), this, SLOT(advanceGen()));
-    /*
-    int counter = 0, nbInit = 100, gen = 1;
-    map<int, Creature> creatures;
-    DNA dna = createRandomDNA();
-    SkinStrand* skin = (SkinStrand*) dna.getDNAStrand().find("skin")->second;
-    cout << skin->getHair() << endl;
+    connect(ui->saveButton, SIGNAL(clicked()), this, SLOT(saveGen()));
+
+    ui->nbGenSpinBox->setMinimum(1);
+    ui->nbGenSpinBox->setMaximum(100000);
+
+    ui->tableGen->verticalHeader()->hide();
+    ui->tableGen->autoScrollMargin();
 
     for(counter=0 ; counter<nbInit ; counter++) {
         DNA dna;
@@ -31,15 +28,39 @@ SimWindow::SimWindow(QWidget *parent) :
         creatures.insert(pair<int, Creature>(counter, c));
     }
 
-    vector<string> saveLines;
-
     registerGen(gen, creatures, &saveLines);
-    */
-    //cout << displayGenFur(gen, creatures);
+    writeTable(gen, saveLines.at(gen-1));
 }
 
 void SimWindow::advanceGen() {
-    //int nbGen = ui->nbGenSpinBox->value();
+    int nbGen = ui->nbGenSpinBox->value();
+
+    for(int i=0 ; i<nbGen ; i++) {
+        creatures = mateAndKill(creatures, &counter);
+
+        gen++;
+        registerGen(gen, creatures, &saveLines);
+        writeTable(gen, saveLines.at(gen-1));
+        ui->tableGen->scrollToBottom();
+    }
+}
+
+void SimWindow::saveGen() {
+    saveCsv(saveLines);
+}
+
+void SimWindow::writeTable(int gen, string infos) {
+    stringstream ss(infos);
+    string tok;
+    int i = 0;
+    ui->tableGen->insertRow(gen-1);
+
+    while(std::getline(ss, tok, ' ')) {
+        QTableWidgetItem* item = new QTableWidgetItem(QString::fromStdString(tok));
+        item->setTextAlignment(Qt::AlignHCenter | Qt::AlignCenter);
+        ui->tableGen->setItem(gen-1, i, item);
+        i++;
+    }
 }
 
 SimWindow::~SimWindow()
