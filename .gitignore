@@ -1,5 +1,6 @@
 *.o
 *.out
+*.csv
 *.pro.user
 build-*
 vincentMain.cpp

@@ -110,7 +110,6 @@ int main(int argc, char **argv) {
 			}
 		}
 		else if(command == "save") {
-			string line1 = "Génération,Nb total de créatures,Nb de créatures avec fourrure,% de créatures avec fourrure\n";
 			ofstream saveFile;
 			time_t now = time(0);
 			tm* date = localtime(&now);
@@ -155,7 +154,7 @@ int main(int argc, char **argv) {
 			ss << ".csv";
 			string filename = ss.str();
 			saveFile.open(filename);
-			saveFile << line1;
+
 			for(auto const& x : saveLines) {
 				saveFile << x;
 			}
@@ -185,7 +184,7 @@ string displayGenFur(int gen, map<int, Creature> creatures, vector<string>* save
 	float percentage = nbFur/creatures.size()*100;
 	ss << "(" << percentage << " % have fur)" << endl;
 
-	save << gen << "," << creatures.size() << "," << nbFur << "," << percentage << "%" << endl;
+	save << gen << " " << creatures.size() << " " << nbFur << " " << percentage << endl;
 	saveLines->push_back(save.str());
 
 	return ss.str();
