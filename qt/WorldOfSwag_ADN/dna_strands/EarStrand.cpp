@@ -13,7 +13,7 @@ EarStrand::EarStrand(int limbNb) {
 
 	/* Ears positions */
 	for(i=0 ; i<earNb ; i++) {
-		vector<bool> earLocationBin = decToBinary(rand()%limbNb+1, xml->LIMB_NB_LENGTH());
+		vector<bool> earLocationBin = decToBinary(rand()%(limbNb+1), xml->LIMB_NB_LENGTH());
 		sequence.insert(sequence.end(), earLocationBin.begin(), earLocationBin.end());
 	}
 }

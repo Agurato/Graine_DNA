@@ -13,7 +13,7 @@ NostrilStrand::NostrilStrand(int limbNb) {
 
 	/* Nostrils positions */
 	for(i=0 ; i<nostrilNb ; i++) {
-		vector<bool> nostrilLocationBin = decToBinary(rand()%limbNb+1, xml->LIMB_NB_LENGTH());
+		vector<bool> nostrilLocationBin = decToBinary(rand()%(limbNb+1), xml->LIMB_NB_LENGTH());
 		sequence.insert(sequence.end(), nostrilLocationBin.begin(), nostrilLocationBin.end());
 	}
 }

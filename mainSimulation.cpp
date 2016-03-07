@@ -78,7 +78,7 @@ string displayGenFur(int gen, map<int, Creature> creatures) {
 	float nbFur = 0;
 	for(auto const& x : creatures) {
 		Creature c = x.second;
-		SkinStrand *skin = (SkinStrand*) c.getDNA().getDNAStrand().at(0);
+		SkinStrand *skin = (SkinStrand*) c.getDNA().getDNAStrand().find("skin")->second;
 		if(skin->getHair() == "fur") {
 			nbFur ++;
 		}

@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <map>
 #include "dna_strands/Strand.hpp"
 
 class DNA {
@@ -15,17 +16,18 @@ private:
 	- MouthStrand
 	- NostrilStrand
 	*/
-	std::vector<Strand*> dnaStrand;
+	//std::vector<Strand*> dnaStrand;
+	std::map<std::string, Strand*> dnaStrand;
 
 public:
 	DNA();
-	DNA(std::vector<Strand*> strands);
+	DNA(std::map<std::string, Strand*> strands);
 
-	void addStrand(Strand* strand);
+	void addStrand(std::string key, Strand* strand);
 
-	std::vector<Strand*> getDNAStrand();
+	std::map<std::string, Strand*> getDNAStrand();
 
-	void setDNAStrand(std::vector<Strand*> strands);
+	void setDNAStrand(std::map<std::string, Strand*> strands);
 
 };
 

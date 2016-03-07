@@ -12,9 +12,8 @@ SOURCES += \
     dna_strands/NostrilStrand.cpp \
     dna_strands/SkinStrand.cpp \
     dna_strands/Strand.cpp \
-    parts/Eye.cpp \
-    parts/XMLData.cpp \
-    simfunctions/functions.cpp \
+    sim/functions.cpp \
+    sim/XMLData.cpp \
     utils/utils.cpp \
     Creature.cpp \
     DNA.cpp
@@ -31,9 +30,8 @@ HEADERS += \
     dna_strands/NostrilStrand.hpp \
     dna_strands/SkinStrand.hpp \
     dna_strands/Strand.hpp \
-    parts/Eye.hpp \
-    parts/XMLData.hpp \
-    simfunctions/functions.hpp \
+    sim/functions.hpp \
+    sim/XMLData.hpp \
     utils/utils.hpp \
     Creature.hpp \
     DNA.hpp

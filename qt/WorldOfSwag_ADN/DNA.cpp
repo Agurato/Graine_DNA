@@ -6,18 +6,18 @@ DNA::DNA() {
 	dnaStrand.clear();
 }
 
-DNA::DNA(vector<Strand*> strands) {
+DNA::DNA(map<string, Strand*> strands) {
 	dnaStrand = strands;
 }
 
-void DNA::addStrand(Strand* strand) {
-	dnaStrand.push_back(strand);
+void DNA::addStrand(string key, Strand* strand) {
+	dnaStrand.insert(pair<string, Strand*>(key, strand));
 }
 
-vector<Strand*> DNA::getDNAStrand() {
+map<string, Strand*> DNA::getDNAStrand() {
 	return dnaStrand;
 }
 
-void DNA::setDNAStrand(vector<Strand*> strands) {
+void DNA::setDNAStrand(map<string, Strand*> strands) {
 	dnaStrand = strands;
 }

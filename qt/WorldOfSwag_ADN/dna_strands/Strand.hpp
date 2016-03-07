@@ -1,7 +1,7 @@
 #ifndef DEF_STRAND
 #define DEF_STRAND
 
-#include "../parts/XMLData.hpp"
+#include "../sim/XMLData.hpp"
 #include <string>
 #include <vector>
 #include <cmath>
