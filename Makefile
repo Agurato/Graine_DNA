@@ -2,10 +2,10 @@ CC=g++
 CFLAGS= -std=c++11 -Wall
 LDFLAGS= -lxerces-c
 
-functions= bin/simfunctions/functions.o
+functions= bin/sim/functions.o
 strands= bin/dna_strands/EarStrand.o bin/dna_strands/EyeStrand.o bin/dna_strands/LimbStrand.o bin/dna_strands/MouthStrand.o bin/dna_strands/NostrilStrand.o bin/dna_strands/SkinStrand.o bin/dna_strands/Strand.o
 utils= bin/utils/utils.o
-xml= bin/parts/XMLData.o
+xml= bin/sim/XMLData.o
 all= $(strands) $(xml) $(utils) $(functions) bin/DNA.o bin/Creature.o
 
 simulation : bin/mainSimulation.o $(all)
@@ -44,10 +44,10 @@ bin/Creature.o : Creature.cpp Creature.hpp
 bin/utils/utils.o : utils/utils.cpp utils/utils.hpp
 	$(CC) -o $@ -c $< $(CFLAGS)
 
-bin/parts/XMLData.o : parts/XMLData.cpp parts/XMLData.hpp
+bin/sim/XMLData.o : sim/XMLData.cpp sim/XMLData.hpp
 	$(CC) -o $@ -c $< $(CFLAGS) $(LDFLAGS)
 
-bin/simfunctions/functions.o : simfunctions/functions.cpp simfunctions/functions.hpp
+bin/sim/functions.o : sim/functions.cpp sim/functions.hpp
 	$(CC) -o $@ -c $< $(CFLAGS)
 
 bin/dna_strands/%.o: dna_strands/%.cpp dna_strands/%.hpp

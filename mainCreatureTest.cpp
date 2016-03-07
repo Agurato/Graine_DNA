@@ -3,7 +3,7 @@
 #include <ctime>
 
 #include "utils/utils.hpp"
-#include "parts/XMLData.hpp"
+#include "sim/XMLData.hpp"
 
 #include "dna_strands/Strand.hpp"
 #include "dna_strands/EarStrand.hpp"
@@ -20,7 +20,7 @@ using namespace xercesc;
 
 int main() {
 	XMLData* xml = XMLData::getInstance();
-	xml->parseXML("parts/codes.xml");
+	xml->parseXML("sim/codes.xml");
 
 	srand(time(0));
 

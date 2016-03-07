@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "parts/XMLData.hpp"
+#include "sim/XMLData.hpp"
 
 using namespace std;
 
@@ -9,7 +9,7 @@ int main(int argc, char **argv) {
 	XMLData* xml = XMLData::getInstance();
 	string file;
 	if(argc < 2) {
-		file = "parts/codes.xml";
+		file = "sim/codes.xml";
 	}
 	else {
 		file = argv[1];

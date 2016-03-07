@@ -2,5 +2,5 @@
 *.out
 *.csv
 *.pro.user
-build-*
+qt/build-*
 vincentMain.cpp

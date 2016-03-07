@@ -115,3 +115,128 @@ vector<Strand*> DelMutation(DNA mutatedDNA, int mutationPlace, MutationTypes mut
 vector<Strand*> SubMutation(DNA mutatedDNA, int mutationPlace, MutationTypes mutationType) {
 	return mutatedDNA.getDNAStrand();
 }
+
+map<int, Creature> mateAndKill(map<int, Creature> creatures, int* counter) {
+	int j = 1, size = creatures.size();
+
+	map<int, Creature>::iterator it;
+	map<int, Creature> nextGen;
+
+	/* For each creature */
+	for(it=creatures.begin() ; it != creatures.end() ; ++it, j++) {
+		int id1 = it->first;
+		Creature c1 = it->second;
+
+		SkinStrand *skin1 = (SkinStrand*) c1.getDNA().getDNAStrand().at(0);
+		int deathBonus1;
+		if(skin1->getHair() == "fur") {
+			deathBonus1 = -ENV_FACTOR;
+		}
+		else {
+			deathBonus1 = ENV_FACTOR;
+		}
+		/* If the number of creatures is uneven */
+		if(size%2 != 1 || j != size) {
+			it++;
+			j++;
+			int id2 = it->first;
+			Creature c2 = it->second;
+
+			SkinStrand *skin2 = (SkinStrand*) c2.getDNA().getDNAStrand().at(0);
+			int deathBonus2;
+			if(skin2->getHair() == "fur") {
+				deathBonus2 = -ENV_FACTOR;
+			}
+			else {
+				deathBonus2 = ENV_FACTOR;
+			}
+
+			DNA newDNA = mating(c1.getDNA(), c2.getDNA());
+			Creature c(*counter, newDNA);
+			nextGen.insert(pair<int, Creature>(*counter, c));
+			(*counter)++;
+
+			/* Creature 2 lives */
+			if(rand()%1000 > DEATH_CHANCE+deathBonus2) {
+				nextGen.insert(pair<int, Creature>(id2, c2));
+			}
+		}
+		/* Creature 1 lives */
+		if(rand()%1000 > DEATH_CHANCE+deathBonus1) {
+			nextGen.insert(pair<int, Creature>(id1, c1));
+		}
+	}
+
+	return nextGen;
+}
+
+void registerGen(int gen, map<int, Creature> creatures, vector<string>* saveLines) {
+	stringstream save;
+	save.precision(5);
+
+	float nbFur = 0;
+	for(auto const& x : creatures) {
+		Creature c = x.second;
+		SkinStrand *skin = (SkinStrand*) c.getDNA().getDNAStrand().at(0);
+		if(skin->getHair() == "fur") {
+			nbFur ++;
+		}
+	}
+	float percentage = nbFur/creatures.size()*100;
+
+	save << gen << " " << creatures.size() << " " << nbFur << " " << percentage << endl;
+	saveLines->push_back(save.str());
+}
+
+void saveCsv(vector<string> saveLines) {
+	ofstream saveFile;
+	time_t now = time(0);
+	tm* date = localtime(&now);
+
+	stringstream ss;
+	ss << 1900+date->tm_year;
+	if(date->tm_mon+1 < 10) {
+		ss << "0" << date->tm_mon+1;
+	}
+	else {
+		ss << date->tm_mon+1;
+	}
+
+	if(date->tm_mday < 10) {
+		ss << "0" << date->tm_mday;
+	}
+	else {
+		ss << date->tm_mday;
+	}
+
+	if(date->tm_hour+1 < 10) {
+		ss << "0" << date->tm_hour+1;
+	}
+	else {
+		ss << date->tm_hour+1;
+	}
+
+	if(date->tm_min+1 < 10) {
+		ss << "0" << date->tm_min+1;
+	}
+	else {
+		ss << date->tm_min+1;
+	}
+
+	if(date->tm_sec+1 < 10) {
+		ss << "0" << date->tm_sec+1;
+	}
+	else {
+		ss << date->tm_sec+1;
+	}
+
+	ss << ".csv";
+	string filename = ss.str();
+	saveFile.open(filename);
+
+	for(auto const& x : saveLines) {
+		saveFile << x;
+	}
+	cout << "Saved as " << filename << endl;
+	saveFile.close();
+}

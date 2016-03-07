@@ -1,6 +1,6 @@
 #include <iostream>
-#include "parts/XMLData.hpp"
-#include "simfunctions/functions.hpp"
+#include "sim/XMLData.hpp"
+#include "sim/functions.hpp"
 #include "DNA.hpp"
 
 using namespace std;
@@ -10,7 +10,7 @@ int main(int argc, char **argv) {
 	srand(time(0));
 
 	XMLData* xml = XMLData::getInstance();
-	xml->parseXML("parts/codes.xml");
+	xml->parseXML("sim/codes.xml");
 
 	DNA dna = createRandomDNA();
 	vector<Strand*> strands = dna.getDNAStrand();

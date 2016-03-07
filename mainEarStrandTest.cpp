@@ -11,11 +11,13 @@
 #include "dna_strands/MouthStrand.hpp"
 #include "dna_strands/NostrilStrand.hpp"
 
+#include "sim/XMLData.hpp"
+
 using namespace std;
 
 int main() {
 	XMLData* xml = XMLData::getInstance();
-	xml->parseXML("parts/codes.xml");
+	xml->parseXML("sim/codes.xml");
 
 	srand(time(0));
 
