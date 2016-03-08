@@ -12,6 +12,7 @@
 
 using namespace std;
 
+string stdoutFromCommand(string cmd);
 string displayGenFur(int gen, map<int, Creature> creatures);
 
 int main(int argc, char **argv) {
@@ -77,6 +78,22 @@ int main(int argc, char **argv) {
 				saveCsv(saveLines);
 			}
 		}
+		else if(args.at(0) == "graph") {
+			string file(stdoutFromCommand("ls -t | grep .csv | head -1"));
+			file.pop_back();
+			if(args.size() > 1) {
+				file = args.at(1);
+			}
+			cout << "Opening " << file << endl;
+			/* TODO : vérifier existence file + script python à lancer sous cette forme pour les here document
+
+			system("cat > bonjour.txt <<EOF\n"
+			"This is a here document\n"
+			"being executed in system()\n"
+			"EOF\n");
+
+			*/
+		}
 		else if(args.at(0) == "restart") {
 			xml->parseXML("sim/codes.xml");
 			counter = 0;
@@ -102,6 +119,22 @@ int main(int argc, char **argv) {
 	} while(command != "quit" && command != "q");
 
 	return 0;
+}
+
+string stdoutFromCommand(string cmd) {
+	string data;
+	FILE * stream;
+	const int max_buffer = 256;
+	char buffer[max_buffer];
+	cmd.append(" 2>&1");
+
+	stream = popen(cmd.c_str(), "r");
+	if (stream) {
+		while (!feof(stream))
+		if (fgets(buffer, max_buffer, stream) != NULL) data.append(buffer);
+		pclose(stream);
+	}
+	return data;
 }
 
 string displayGenFur(int gen, map<int, Creature> creatures) {
