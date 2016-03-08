@@ -26,6 +26,11 @@ public:
 	static XMLData* getInstance();
 
 private:
+	int hairTypeCount = 0, hairTypeCountMax = -1;
+	int limbTypeCount = 0, limbTypeCountMax = -1;
+	int mouthTypeCount = 0, mouthTypeCountMax = -1;
+	int teethTypeCount = 0, teethTypeCountMax = -1;
+
 	int skinColorLength = 24, hairTypeLength = -1;
 	int limbNbLength, limbSizeLength, limbTypeLength = -1;
 	int earNbLength;

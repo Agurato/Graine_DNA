@@ -6,12 +6,15 @@ typesMax="x", x étant le nombre maximal de types que l'on veut -->
 		<weigth max="1000" />
 	</general>
 
-	<hairiness>
+	<hairiness typesMax="" >
 		<type name="nothing" />
 		<type name="fur" />
+		<type name="shell"/>
+		<type name="feathers"/>
+		<type name="scales"/>
 	</hairiness>
 
-	<limbs nbMax="15" sizeMax="255" >
+	<limbs nbMax="15" sizeMax="255" typesMax="" >
 		<type name="hand" />
 		<type name="foot" />
 		<type name="hoof" /> <!-- hoof = sabot -->
@@ -26,11 +29,11 @@ typesMax="x", x étant le nombre maximal de types que l'on veut -->
 		<nostrils nbMax="7" />
 
 		<mouth>
-			<width>
+			<width typesMax="" >
 				<type name="small" />
 				<type name="big" />
 			</width>
-			<teeth nbMax="63">
+			<teeth nbMax="63" typesMax="" >
 				<type name="meat" />
 				<type name="plants" />
 				<type name="omni" />

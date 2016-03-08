@@ -194,7 +194,6 @@ void registerGen(int gen, map<int, Creature> creatures, vector<string>* saveLine
 }
 
 void saveCsv(vector<string> saveLines) {
-	ofstream saveFile;
 	time_t now = time(0);
 	tm* date = localtime(&now);
 
@@ -236,7 +235,11 @@ void saveCsv(vector<string> saveLines) {
 	}
 
 	ss << ".csv";
-	string filename = ss.str();
+	saveCsv(saveLines, ss.str());
+}
+
+void saveCsv(vector<string> saveLines, string filename) {
+	ofstream saveFile;
 	saveFile.open(filename);
 
 	for(auto const& x : saveLines) {

@@ -38,5 +38,6 @@ std::map<std::string, Strand*> SubMutation(DNA mutatedDNA, int mutationPlace, Mu
 std::map<int, Creature> mateAndKill(std::map<int, Creature> creatures, int* counter);
 void registerGen(int gen, std::map<int, Creature> creatures, std::vector<std::string>* saveLines);
 void saveCsv(std::vector<std::string> saveLines);
+void saveCsv(std::vector<std::string> saveLines, std::string filename);
 
 #endif

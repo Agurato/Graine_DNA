@@ -19,7 +19,7 @@ LimbStrand::LimbStrand() {
 
 	/* Limb types (extremities) */
 	for(i=0 ; i<limbNb ; i++) {
-		vector<bool> limbTypeBin = decToBinary(rand()%((int) pow(2, xml->LIMB_TYPE_LENGTH())), xml->LIMB_TYPE_LENGTH());
+		vector<bool> limbTypeBin = decToBinary(rand()%xml->getLimbTypes().size(), xml->LIMB_TYPE_LENGTH());
 		sequence.insert(sequence.end(), limbTypeBin.begin(), limbTypeBin.end());
 	}
 }

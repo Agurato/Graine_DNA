@@ -13,14 +13,14 @@ int main(int argc, char **argv) {
 	xml->parseXML("sim/codes.xml");
 
 	DNA dna = createRandomDNA();
-	vector<Strand*> strands = dna.getDNAStrand();
+	map<string, Strand*> strands = dna.getDNAStrand();
 
-	SkinStrand* skin = (SkinStrand*) strands.at(0);
-	LimbStrand* limb = (LimbStrand*) strands.at(1);
-	EarStrand* ear = (EarStrand*) strands.at(2);
-	EyeStrand* eye = (EyeStrand*) strands.at(3);
-	MouthStrand* mouth = (MouthStrand*) strands.at(4);
-	NostrilStrand* nostril = (NostrilStrand*) strands.at(5);
+	SkinStrand* skin = (SkinStrand*) strands.find("skin")->second;
+	LimbStrand* limb = (LimbStrand*) strands.find("limb")->second;
+	EarStrand* ear = (EarStrand*) strands.find("ear")->second;
+	EyeStrand* eye = (EyeStrand*) strands.find("eye")->second;
+	MouthStrand* mouth = (MouthStrand*) strands.find("mouth")->second;
+	NostrilStrand* nostril = (NostrilStrand*) strands.find("nostril")->second;
 
 	cout << "========================================" << endl << "========================================" << endl << "DNA N°0" << endl;
 	cout << skin->toString() << "----------------------------------------" << endl;
@@ -29,10 +29,6 @@ int main(int argc, char **argv) {
 	cout << eye->toString() << "----------------------------------------" << endl;
 	cout << mouth->toString() << "----------------------------------------" << endl;
 	cout << nostril->toString() << endl;
-
-	if(skin->getHair() == "fur") {
-		cout << endl << endl << "FUR !!!" << endl;
-	}
 
 	return 0;
 }

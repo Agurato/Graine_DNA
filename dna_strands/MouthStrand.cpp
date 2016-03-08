@@ -4,9 +4,9 @@ using namespace std;
 
 MouthStrand::MouthStrand(int limbNb) {
 
-	int mouthType = rand()%((int) pow(2, xml->MOUTH_WIDTH_LENGTH()));
+	int mouthType = rand()%xml->getMouthWidthTypes().size();
 	int teethNb = rand()%((int) pow(2, xml->TEETH_NB_LENGTH()));
-	int teethType = rand()%((int) pow(2, xml->TEETH_TYPE_LENGTH()));
+	int teethType = rand()%xml->getTeethTypes().size();
 
 	/* Mouth Type */
 	vector<bool> mouthTypeBin = decToBinary(mouthType, xml->MOUTH_WIDTH_LENGTH());

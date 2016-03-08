@@ -11,9 +11,8 @@ SkinStrand::SkinStrand() {
 	}
 
 	/* Skin hairiness */
-	for(i=0 ; i<xml->HAIR_TYPE_LENGTH() ; i++) {
-		sequence.push_back(rand()%2);
-	}
+	vector<bool> hairTypeBin = decToBinary(rand()%xml->getHairTypes().size(), xml->HAIR_TYPE_LENGTH());
+	sequence.insert(sequence.end(), hairTypeBin.begin(), hairTypeBin.end());
 }
 
 SkinStrand::SkinStrand(vector<bool> colorBin, vector<bool> hairiness) {

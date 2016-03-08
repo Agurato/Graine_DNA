@@ -16,6 +16,18 @@ XMLData* XMLData::getInstance() {
 
 /* Method to call to initisalize the parsing */
 int XMLData::parseXML(string filePath) {
+
+	hairTypeCount = 0; hairTypeCountMax = -1;
+	limbTypeCount = 0; limbTypeCountMax = -1;
+	mouthTypeCount = 0; mouthTypeCountMax = -1;
+	teethTypeCount = 0; teethTypeCountMax = -1;
+
+	skinColorLength = 24; hairTypeLength = -1;
+	limbTypeLength = -1;
+	eyeColorLength = 24;
+	mouthWidthTypeLength = -1;
+	teethTypeLength = -1;
+
 	try {
 		XMLPlatformUtils::Initialize();
 	} catch (const XMLException& toCatch) {
@@ -83,12 +95,6 @@ void XMLData::parseDOMNode(DOMNode *node) {
 		string nodeName(XMLString::transcode(node->getNodeName()));
 
 		if(node->getNodeType() == DOMNode::ELEMENT_NODE) {
-			/*
-			path.push_back(nodeName);
-			for (vector<string>::iterator it = path.begin() ; it != path.end() ; ++it) {
-				cout << *it << " - ";
-			}
-			*/
 			XMLData::parseDOMElement(static_cast<DOMElement*>(node));
 		}
 
@@ -114,6 +120,7 @@ void XMLData::parseDOMElement(DOMElement* element) {
 			value = stoi(attr_value);
 			if(name == "hairiness") {
 				if(attr_name == "typesMax") {
+					hairTypeCountMax = value;
 					hairTypeLength = nbBitsMin(value-1);
 				}
 			}
@@ -125,6 +132,7 @@ void XMLData::parseDOMElement(DOMElement* element) {
 					limbSizeLength = nbBitsMin(value);
 				}
 				else if(attr_name == "typesMax") {
+					limbTypeCountMax = value;
 					limbTypeLength = nbBitsMin(value-1);
 				}
 			}
@@ -145,6 +153,7 @@ void XMLData::parseDOMElement(DOMElement* element) {
 			}
 			else if(name == "width") {
 				if(attr_name == "typesMax") {
+					mouthTypeCountMax = value;
 					mouthWidthTypeLength = nbBitsMin(value-1);
 				}
 			}
@@ -153,6 +162,7 @@ void XMLData::parseDOMElement(DOMElement* element) {
 					teethNbLength = nbBitsMin(value);
 				}
 				else if(attr_name == "typesMax") {
+					teethTypeCountMax = value;
 					teethTypeLength = nbBitsMin(value-1);
 				}
 			}
@@ -160,17 +170,25 @@ void XMLData::parseDOMElement(DOMElement* element) {
 		catch(invalid_argument& e) {
 			if(name == "type") {
 				string parentName(XMLString::transcode(static_cast<DOMElement*>(element->getParentNode())->getTagName()));
-				if(parentName == "hairiness") {
+				if(parentName == "hairiness" &&
+					((hairTypeCountMax != -1 && hairTypeCount < hairTypeCountMax) || (hairTypeCountMax == -1))) {
 					hairTypes.push_back(attr_value);
+					hairTypeCount++;
 				}
-				else if(parentName == "limbs") {
+				else if(parentName == "limbs" &&
+					((limbTypeCountMax != -1 && limbTypeCount < limbTypeCountMax) || (limbTypeCountMax == -1))) {
 					limbTypes.push_back(attr_value);
+					limbTypeCount++;
 				}
-				else if(parentName == "width") {
+				else if(parentName == "width" &&
+					((mouthTypeCountMax != -1 && mouthTypeCount < mouthTypeCountMax) || (mouthTypeCountMax == -1))) {
 					mouthWidthTypes.push_back(attr_value);
+					mouthTypeCount++;
 				}
-				else if(parentName == "teeth") {
+				else if(parentName == "teeth" &&
+					((teethTypeCountMax != -1 && teethTypeCount < teethTypeCountMax) || (teethTypeCountMax == -1))) {
 					teethTypes.push_back(attr_value);
+					teethTypeCount++;
 				}
 			}
 		}
