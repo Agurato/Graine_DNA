@@ -198,6 +198,9 @@ void saveCsv(vector<string> saveLines) {
 	tm* date = localtime(&now);
 
 	stringstream ss;
+
+	ss << "results/";
+
 	ss << 1900+date->tm_year;
 	if(date->tm_mon+1 < 10) {
 		ss << "0" << date->tm_mon+1;
