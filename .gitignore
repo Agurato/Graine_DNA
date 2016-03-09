@@ -1,6 +1,7 @@
 *.o
 *.out
 *.csv
+!results/*
 *.pro.user
 qt/build-*
 vincentMain.cpp
