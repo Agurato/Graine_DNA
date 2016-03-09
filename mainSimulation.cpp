@@ -43,19 +43,37 @@ int main(int argc, char **argv) {
 
 	/* Main loop */
 	do {
-		cout << "> ";
-
-		getline(cin, command);
+		do {
+			cout << "> ";
+			getline(cin, command);
+		} while(command.length() == 0);
 
 		istringstream iss(command);
 		vector<string> args{istream_iterator<string>{iss}, istream_iterator<string>{}};
 
 		if(args.at(0) == "h" || args.at(0) == "help") {
-			cout << "Enter \"+\" followed by a number x to advance of x generations" << endl;
-			cout << "Enter \"save\" to save the simulation as a .csv file" << endl;
-			cout << "Enter \"restart\" to restart the simulation. It can be followed by the number of creatures to start with" << endl;
-			cout << "Enter \"h\" or \"help\" to print the help page" << endl;
-			cout << "Enter \"q\" or \"quit\" to quit the simulation" << endl;
+			cout << endl << "* Enter \"+nbGenerations\" to advance the simulation" << endl;
+			cout << "\t- nbGenerations : number of generations to go forward";
+			cout << endl << endl;
+
+			cout << "* Enter \"save [file]\" to save the simulation as a .csv file" << endl;
+			cout << "\t- file : file name where the data is saved (if no file is given, the name of the file is the current date & time)";
+			cout << endl << endl;
+
+			cout << "* Enter \"graph [file]\" to display the graph" << endl;
+			cout << "\t- file : file to load to the graph (if no file is given, the last .csv file modified is loaded)";
+			cout << endl << endl;
+
+			cout << "* Enter \"restart [nbCreatures [xmlFile]]\" to restart the simulation" << endl;
+			cout << "\t- nbCreatures : number of creatures at the beginning of the simulation" << endl;
+			cout << "\t- xmlFile : XML file to load to define the limits of the creature generation";
+			cout << endl << endl;
+
+			cout << "* Enter \"h\" or \"help\" to display this help page";
+			cout << endl << endl;
+
+			cout << "* Enter \"q\" or \"quit\" to quit the simulation";
+			cout << endl << endl;
 		}
 		else if(args.at(0).c_str()[0] == '+') {
 			/* Number of generations to go further */
@@ -95,7 +113,7 @@ int main(int argc, char **argv) {
 			*/
 		}
 		else if(args.at(0) == "restart") {
-			xml->parseXML("sim/codes.xml");
+			string xmlFile("sim/codes.xml");
 			counter = 0;
 			gen = 1;
 			nbInit = 1000;
@@ -103,6 +121,11 @@ int main(int argc, char **argv) {
 			if(args.size() > 1) {
 				nbInit = stoi(args.at(1));
 			}
+			if(args.size() > 2) {
+				xmlFile = args.at(2);
+			}
+
+			xml->parseXML(xmlFile);
 
 			creatures.clear();
 			saveLines.clear();

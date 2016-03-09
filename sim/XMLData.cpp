@@ -28,6 +28,11 @@ int XMLData::parseXML(string filePath) {
 	mouthWidthTypeLength = -1;
 	teethTypeLength = -1;
 
+	hairTypes.clear();
+	limbTypes.clear();
+	mouthWidthTypes.clear();
+	teethTypes.clear();
+
 	try {
 		XMLPlatformUtils::Initialize();
 	} catch (const XMLException& toCatch) {
