@@ -165,7 +165,7 @@ string displayGenFur(int gen, map<int, Creature> creatures) {
 	ss.precision(5);
 	save.precision(5);
 
-	ss << "Génération n°" << gen << " : " << creatures.size() << " créatures vivantes ";
+	ss << "Generation n°" << gen << " : " << creatures.size() << " alive creatures ";
 
 	float nbFur = 0;
 	for(auto const& x : creatures) {
