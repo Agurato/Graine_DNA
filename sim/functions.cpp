@@ -187,7 +187,14 @@ void registerGen(int gen, map<int, Creature> creatures, vector<string>* saveLine
 			nbFur ++;
 		}
 	}
-	float percentage = nbFur/creatures.size()*100;
+
+	float percentage;
+	if(creatures.size() == 0) {
+		percentage = 0;
+	}
+	else {
+		percentage = nbFur/creatures.size()*100;
+	}
 
 	save << gen << " " << creatures.size() << " " << nbFur << " " << percentage << endl;
 	saveLines->push_back(save.str());

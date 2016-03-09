@@ -175,7 +175,15 @@ string displayGenFur(int gen, map<int, Creature> creatures) {
 			nbFur ++;
 		}
 	}
-	float percentage = nbFur/creatures.size()*100;
+
+	float percentage;
+	if(creatures.size() == 0) {
+		percentage = 0;
+	}
+	else {
+		percentage = nbFur/creatures.size()*100;
+	}
+	
 	ss << "(" << percentage << " % have fur)" << endl;
 
 	save << gen << " " << creatures.size() << " " << nbFur << " " << percentage << endl;

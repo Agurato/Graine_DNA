@@ -9,11 +9,11 @@ typesMax="x", x étant le nombre maximal de types que l'on veut -->
 	<hairiness typesMax="" >
 		<type name="nothing" />
 		<type name="fur" />
-		<!--
+<!--
 		<type name="shell"/>
 		<type name="feathers"/>
 		<type name="scales"/>
-	-->
+-->
 	</hairiness>
 
 	<limbs nbMax="15" sizeMax="255" typesMax="" >
