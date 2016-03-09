@@ -30,27 +30,35 @@ creatureTest : bin/mainCreatureTest.o $(strands) $(utils) $(xml) bin/DNA.o bin/C
 	$(CC) -o creatureTest.out $^ $(CFLAGS) $(LDFLAGS)
 
 bin/mainSimulation.o : mainSimulation.cpp
+	@ mkdir -p bin
 	$(CC) -o $@ -c $< $(CFLAGS)
 
 bin/%Test.o : %Test.cpp
+	@ mkdir -p bin
 	$(CC) -o $@ -c $< $(CFLAGS)
 
 bin/DNA.o : DNA.cpp DNA.hpp
+	@ mkdir -p bin
 	$(CC) -o $@ -c $< $(CFLAGS)
 
 bin/Creature.o : Creature.cpp Creature.hpp
+	@ mkdir -p bin
 	$(CC) -o $@ -c $< $(CFLAGS)
 
 bin/utils/utils.o : utils/utils.cpp utils/utils.hpp
+	@ mkdir -p bin/utils
 	$(CC) -o $@ -c $< $(CFLAGS)
 
 bin/sim/XMLData.o : sim/XMLData.cpp sim/XMLData.hpp
+	@ mkdir -p bin/sim
 	$(CC) -o $@ -c $< $(CFLAGS) $(LDFLAGS)
 
 bin/sim/functions.o : sim/functions.cpp sim/functions.hpp
+	@ mkdir -p bin/sim
 	$(CC) -o $@ -c $< $(CFLAGS)
 
 bin/dna_strands/%.o: dna_strands/%.cpp dna_strands/%.hpp
+	@ mkdir -p bin/dna_strands
 	$(CC) -o $@ -c $< $(CFLAGS)
 
 clean :
